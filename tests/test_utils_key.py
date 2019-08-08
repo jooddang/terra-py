@@ -8,3 +8,8 @@ mnemonic = ('bread genuine element reopen cliff power mean quiz mutual '
 def test_validate_mnemonic():
     assert key.validate_mnemonic(mnemonic)
     assert not key.validate_mnemonic('wrong mnemonic')
+
+
+def test_generate_mnemonic():
+    mnemonic = key.generate_mnemonic()
+    assert key.validate_mnemonic(mnemonic)
