@@ -12,3 +12,12 @@ def generate_mnemonic(entropy_length: int = 256) -> str:
     """
     entropy = secrets.randbits(entropy_length)
     return bip39.mnemonic_from_entropy(entropy, 'en')
+
+
+def validate_mnemonic(mnemonic: str, lang: str) -> bool:
+    """Validate a mnemonic by trying to get its entropy"""
+    try:
+        bip39.entropy_from_mnemonic(mnemonic, lang)
+        return True
+    except ValueError:
+        return False
