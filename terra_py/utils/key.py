@@ -1,6 +1,9 @@
+from collections import namedtuple
 import secrets
 
 from btclib import bip32, bip39
+
+KeyPair = namedtuple('KeyPair', ['private_key', 'public_key'])
 
 
 def validate_mnemonic(mnemonic: str, lang: str = 'en') -> bool:
@@ -21,6 +24,14 @@ def derive_master_key(mnemonic: str) -> bytes:
         raise ValueError('Invalid mnemonic')
     # using bitcoin mainnet version bytes
     return bip32.xmprv_from_seed(seed, bip32.MAINNET_PRV)
+
+
+def derive_key_pair(master_key: bytes, account: int = 0, index: int = 0) -> KeyPair:  # noqa: E501
+    """Derive a key pair (priv + pub key) from a given master key"""
+    luna_hd_path = f'm/44\'/330\'/{account}\'/0/{index}'
+    private_key = bip32.derive(master_key, luna_hd_path)
+    public_key = bip32.xpub_from_xprv(master_key)
+    return KeyPair(private_key, public_key)
 
 
 def generate_mnemonic(entropy_length: int = 256, lang: str = 'en') -> str:
