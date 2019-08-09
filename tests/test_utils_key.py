@@ -1,6 +1,6 @@
 import pytest
 
-from terra_py.utils import key
+from terra.utils import key
 
 mnemonic = ('bread genuine element reopen cliff power mean quiz mutual '
             'six machine planet dry detect edit slim clap firm jelly '
