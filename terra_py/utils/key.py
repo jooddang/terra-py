@@ -1,6 +1,6 @@
 import secrets
 
-from btclib import bip39
+from btclib import bip32, bip39
 
 
 def validate_mnemonic(mnemonic: str, lang: str = 'en') -> bool:
@@ -10,6 +10,17 @@ def validate_mnemonic(mnemonic: str, lang: str = 'en') -> bool:
         return True
     except ValueError:
         return False
+
+
+def derive_master_key(mnemonic: str) -> bytes:
+    """Derive a master key from a given mnemonic"""
+    if validate_mnemonic(mnemonic):
+        # empty string for no passphrase
+        seed = bip39.seed_from_mnemonic(mnemonic, '')
+    else:
+        raise ValueError('Invalid mnemonic')
+    # using bitcoin mainnet version bytes
+    return bip32.xmprv_from_seed(seed, bip32.MAINNET_PRV)
 
 
 def generate_mnemonic(entropy_length: int = 256, lang: str = 'en') -> str:
