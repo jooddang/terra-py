@@ -19,11 +19,9 @@ def derive_master_key(mnemonic: str) -> bytes:
     """Derive a master key from a given mnemonic"""
     if validate_mnemonic(mnemonic):
         # empty string for no passphrase
-        seed = bip39.seed_from_mnemonic(mnemonic, '')
+        return bip39.mprv_from_mnemonic(mnemonic, '', bip32.MAINNET_PRV)
     else:
         raise ValueError('Invalid mnemonic')
-    # using bitcoin mainnet version bytes
-    return bip32.xmprv_from_seed(seed, bip32.MAINNET_PRV)
 
 
 def derive_key_pair(master_key: bytes, account: int = 0, index: int = 0) -> KeyPair:  # noqa: E501
