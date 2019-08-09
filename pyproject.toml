@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "terra-py"
+name = "terra"
 version = "0.1.0"
 description = "Python library for Terra Core"
 authors = ["etienne-napoleone <etienne@terra.money>"]

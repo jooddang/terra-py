@@ -1,4 +1,4 @@
-from terra_py import __version__
+from terra import __version__
 
 
 def test_version():
