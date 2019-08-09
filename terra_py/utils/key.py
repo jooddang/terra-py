@@ -28,7 +28,7 @@ def derive_key_pair(master_key: bytes, account: int = 0, index: int = 0) -> KeyP
     """Derive a key pair (priv + pub key) from a given master key"""
     luna_hd_path = f'm/44\'/330\'/{account}\'/0/{index}'
     private_key = bip32.derive(master_key, luna_hd_path)
-    public_key = bip32.xpub_from_xprv(master_key)
+    public_key = bip32.xpub_from_xprv(private_key)
     return KeyPair(private_key, public_key)
 
 
