@@ -6,6 +6,7 @@ authors = ["etienne-napoleone <etienne@terra.money>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+btclib = "^2019.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
