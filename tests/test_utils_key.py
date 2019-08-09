@@ -24,6 +24,15 @@ def test_derive_master_key_raise_valueerror():
         assert key.derive_master_key(bad_mnemonic)
 
 
+def test_derive_key_pair():
+    mnemonic = key.generate_mnemonic()
+    master_key = key.derive_master_key(mnemonic)
+    key_pair = key.derive_key_pair(master_key)
+    assert isinstance(key_pair, key.KeyPair)
+    assert key_pair.private_key[:4] == b'xprv'
+    assert key_pair.public_key[:4] == b'xpub'
+
+
 def test_generate_mnemonic():
     mnemonic = key.generate_mnemonic()
     assert key.validate_mnemonic(mnemonic)
