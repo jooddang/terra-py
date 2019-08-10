@@ -10,7 +10,7 @@ T = TypeVar('T')  # Binded to `cls` in `classmethod`s for the return type hint
 class Account:
 
     def __init__(self, private_key: Union[bytes, str]) -> None:
-        """Represent a Terra account and it's signing capabilities."""
+        """Represent a Terra account and its signing capabilities."""
         try:
             self.private_key = bytes(private_key, 'utf-8')
         except TypeError:
