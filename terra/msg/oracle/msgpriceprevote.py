@@ -7,8 +7,8 @@ class MsgPricePrevote(JsonSerializable):
 
     def __init__(
         self,
-        salt: str,
         price: str,
+        salt: str,
         denom: str,
         feeder: str,
         validator: str,
@@ -19,7 +19,7 @@ class MsgPricePrevote(JsonSerializable):
         """
         self.type = 'oracle/MsgPricePrevote'
         self.value = MsgPricePrevoteValue(
-            self._metadata_to_hash(salt, price, denom, feeder),
+            self._metadata_to_hash(price, salt, denom, feeder),
             denom,
             feeder,
             validator,
@@ -27,8 +27,8 @@ class MsgPricePrevote(JsonSerializable):
 
     def _metadata_to_hash(
         self,
-        salt: str,
         price: str,
+        salt: str,
         denom: str,
         voter: str,
     ) -> str:
