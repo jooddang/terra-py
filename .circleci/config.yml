@@ -1,0 +1,65 @@
+version: 2
+
+jobs:
+
+  build-and-test:
+    docker:
+      - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - restore_cache:
+          keys: 
+            - deps-{{ checksum "poetry.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+      - save_cache:
+          key: deps-{{ checksum "poetry.lock" }}
+          paths: 
+            - /home/circleci/.cache/pypoetry/virtualenvs
+      - run:
+          name: Lint
+          command: |
+            poetry run flake8 .
+      - run:
+          name: Test and coverage
+          command: |
+            poetry run coverage run --source terra -m pytest -v
+            poetry run codecov --token=${CODECOV_TOKEN}
+
+  # deployment:
+  #   docker:
+  #       - image: circleci/python:3.6.8
+  #     steps:
+  #       - checkout
+  #       - run:
+  #           name: Publish to PYPI
+  #           command: |
+  #             poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+
+workflows:
+  version: 2
+
+  build-and-test-workflow:
+    jobs:
+      - build-and-test
+  
+  # deployment-workflow:
+  #   jobs:
+
+  #     - build-and-test:
+  #         filters:
+  #           tags:
+  #             only: /v[0-9]+(\.[0-9]+)*/
+  #           branches:
+  #             ignore: /.*/
+
+  #     - deployment:
+  #         requires:
+  #           - build-and-test
+  #         filters:
+  #             tags:
+  #               only: /v[0-9]+(\.[0-9]+)*/
+  #             branches:
+  #               ignore: /.*/
