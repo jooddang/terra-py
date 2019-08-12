@@ -1,7 +1,7 @@
 import json
 
 
-class JsonSerializable(object):
+class JsonSerializable:
 
-    def to_json(self):
-        json.dumps(self.__dict__, default=lambda o: o.to_json())
+    def to_json(self) -> str:
+        return json.dumps(self.__dict__, default=lambda o: o.__dict__)
