@@ -15,6 +15,6 @@ class StdTxValue(JsonSerializable):
     def __init__(self, fee: Fee, memo: str, msg=[], signatures=[]):
         """Values of a StdTx message."""
         self.fee = fee
-        self.memo = None
-        self.msg = []
-        self.signatures = []
+        self.memo = memo
+        self.msg = msg
+        self.signatures = signatures
