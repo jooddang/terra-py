@@ -2,6 +2,7 @@ import json
 
 from terra import msg
 from terra.msg.oracle.msgpriceprevote import MsgPricePrevoteValue
+from terra.msg.oracle.msgpricevote import MsgPriceVoteValue
 
 SALT = '8888'
 DENOM = 'ukrw'
@@ -13,6 +14,16 @@ MSG_PRICE_PREVOTE = {
     'type': 'oracle/MsgPricePrevote',
     'value': {
         'hash': HASH,
+        'denom': DENOM,
+        'feeder': FEEDER,
+        'validator': VALIDATOR,
+    }
+}
+MSG_PRICE_VOTE = {
+    'type': 'oracle/MsgPriceVote',
+    'value': {
+        'price': PRICE,
+        'salt': SALT,
         'denom': DENOM,
         'feeder': FEEDER,
         'validator': VALIDATOR,
@@ -32,10 +43,32 @@ def test_msgpriceprevotevalue():
 
 def test_msgpriceprevote():
     msgsend = msg.oracle.MsgPricePrevote(
-        salt=SALT,
         price=PRICE,
+        salt=SALT,
         denom=DENOM,
         feeder=FEEDER,
         validator=VALIDATOR,
     )
     assert msgsend.to_json() == json.dumps(MSG_PRICE_PREVOTE)
+
+
+def test_msgpriceVotevalue():
+    value = MsgPriceVoteValue(
+        price=PRICE,
+        salt=SALT,
+        denom=DENOM,
+        feeder=FEEDER,
+        validator=VALIDATOR,
+    )
+    assert value.to_json() == json.dumps(MSG_PRICE_VOTE['value'])
+
+
+def test_msgpriceVote():
+    msgsend = msg.oracle.MsgPriceVote(
+        price=PRICE,
+        salt=SALT,
+        denom=DENOM,
+        feeder=FEEDER,
+        validator=VALIDATOR,
+    )
+    assert msgsend.to_json() == json.dumps(MSG_PRICE_VOTE)
