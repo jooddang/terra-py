@@ -36,6 +36,8 @@ class MsgPriceVoteValue(JsonSerializable):
         validator: str,
     ) -> None:
         """Values of a MsgPriceVote message."""
+        self.price = price
+        self.salt = salt
         self.denom = denom
         self.feeder = feeder
         self.validator = validator
