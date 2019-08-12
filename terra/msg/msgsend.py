@@ -14,6 +14,6 @@ class MsgSendValue(JsonSerializable):
 
     def __init__(self, amount: [Amount], from_address: str, to_address: str):
         """Values of a StdTx message."""
-        self.amount = amount
+        self.amount = sorted(amount, key=lambda o: o.denom)
         self.from_address = from_address
         self.to_address = to_address
