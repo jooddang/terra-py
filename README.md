@@ -49,3 +49,9 @@ Run tests
 ```bash
 poetry run coverage run --source terra -m pytest -v
 ```
+
+Linting and code style
+
+```bash
+poetry run flake8 .
+```
