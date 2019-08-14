@@ -8,7 +8,7 @@ class MsgSend(JsonSerializable):
         self,
         amount: [Amount],
         from_address: str,
-        to_address: str
+        to_address: str,
     ) -> None:
         """Represent the top level of a MsgSend message."""
         self.type = 'pay/MsgSend'
@@ -21,7 +21,7 @@ class MsgSendValue(JsonSerializable):
         self,
         amount: [Amount],
         from_address: str,
-        to_address: str
+        to_address: str,
     ) -> None:
         """Values of a MsgSend message."""
         self.amount = sorted(amount, key=lambda o: o.denom)
