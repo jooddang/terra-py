@@ -10,7 +10,7 @@ class MsgDelegate(JsonSerializable):
         validator_address: str,
         amount: Amount,
     ) -> None:
-        """Represent the top level of a MsgSend message."""
+        """Represent the top level of a MsgDelegate message."""
         self.type = 'staking/MsgDelegate'
         self.value = MsgDelegateValue(
             delegator_address,
@@ -27,7 +27,7 @@ class MsgDelegateValue(JsonSerializable):
         validator_address: str,
         amount: Amount,
     ) -> None:
-        """Values of a MsgSend message."""
+        """Values of a MsgDelegate message."""
         self.delegator_address = delegator_address
         self.validator_address = validator_address
         self.amount = amount
