@@ -2,6 +2,7 @@ import json
 
 from terra import msg
 from terra.msg.staking.msgdelegate import MsgDelegateValue
+from terra.msg.staking.msgbeginredelegate import MsgBeginRedelegateValue
 
 AMOUNT = msg.Amount(amount='1000', denom='uluna')
 DELEGATOR_ADDRESS = ''
@@ -11,6 +12,15 @@ MSG_DELEGATE = {
     'value': {
         'delegator_address': DELEGATOR_ADDRESS,
         'validator_address': VALIDATOR_ADDRESS,
+        'amount': AMOUNT.__dict__,
+    }
+}
+MSG_BEGIN_REDELEGATE = {
+    'type': 'staking/MsgBeginRedelegate',
+    'value': {
+        'delegator_address': DELEGATOR_ADDRESS,
+        'validator_src_address': VALIDATOR_ADDRESS,
+        'validator_dst_address': VALIDATOR_ADDRESS,
         'amount': AMOUNT.__dict__,
     }
 }
@@ -32,3 +42,23 @@ def test_msgdelegate():
         amount=AMOUNT,
     )
     assert msgsend.to_json() == json.dumps(MSG_DELEGATE)
+
+
+def test_msgbeginredelegatevalue():
+    value = MsgBeginRedelegateValue(
+        delegator_address=DELEGATOR_ADDRESS,
+        validator_src_address=VALIDATOR_ADDRESS,
+        validator_dst_address=VALIDATOR_ADDRESS,
+        amount=AMOUNT,
+    )
+    assert value.to_json() == json.dumps(MSG_BEGIN_REDELEGATE['value'])
+
+
+def test_msgbeginredelegate():
+    msgsend = msg.staking.MsgBeginRedelegate(
+        delegator_address=DELEGATOR_ADDRESS,
+        validator_src_address=VALIDATOR_ADDRESS,
+        validator_dst_address=VALIDATOR_ADDRESS,
+        amount=AMOUNT,
+    )
+    assert msgsend.to_json() == json.dumps(MSG_BEGIN_REDELEGATE)
