@@ -21,8 +21,6 @@ class Account:
         self.mnemonic = mnemonic
         self.seed = Mnemonic("english").to_seed(self.mnemonic).hex()
         root = self._derive_root(self.seed)
-        self.extended_private_key = root.PrivateKey().hex()
-        self.extended_public_key = root.PublicKey().hex()
         child = self._derive_child(root, account, index)
         self.private_key = child.PrivateKey().hex()
         self.public_key = child.PublicKey().hex()
