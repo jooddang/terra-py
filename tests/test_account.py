@@ -3,10 +3,10 @@ from terra import Account
 ACCOUNT = {
     'account_address': 'terra1ganslgkvaen5gcqfpxu2fvqa08hxpfzn0ayw2s',
     'address': '47670fa2ccee6744600909b8a4b01d79ee60a453',
-    'master_private_key': '17e70ef32933d5d0a8c82fb63390f82507d73e34f311aa89'
-                          '4f35b0779761f4a7',
-    'master_public_key': '039beb2339735bc1cd3b966c6e0de934a36939409418fdf4f'
-                         '1862d186f525f9d27',
+    'extended_private_key': '17e70ef32933d5d0a8c82fb63390f82507d73e34f311aa89'
+                            '4f35b0779761f4a7',
+    'extended_public_key': '039beb2339735bc1cd3b966c6e0de934a36939409418fdf4f'
+                           '1862d186f525f9d27',
     'mnemonic': 'bread genuine element reopen cliff power mean quiz mutual '
                 'six machine planet dry detect edit slim clap firm jelly '
                 'success narrow orange echo tomorrow',
@@ -24,8 +24,8 @@ def test_account():
     a = Account(ACCOUNT['mnemonic'])
     assert a.account_address == ACCOUNT['account_address']
     assert a.address == ACCOUNT['address']
-    assert a.master_private_key == ACCOUNT['master_private_key']
-    assert a.master_public_key == ACCOUNT['master_public_key']
+    assert a.extended_private_key == ACCOUNT['extended_private_key']
+    assert a.extended_public_key == ACCOUNT['extended_public_key']
     assert a.mnemonic == ACCOUNT['mnemonic']
     assert a.operator_address == ACCOUNT['operator_address']
     assert a.private_key == ACCOUNT['private_key']

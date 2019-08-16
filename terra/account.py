@@ -21,11 +21,11 @@ class Account:
         self.mnemonic = mnemonic
         self.seed = Mnemonic("english").to_seed(self.mnemonic).hex()
         root = self._derive_root(self.seed)
-        self.master_private_key = root.PrivateKey().hex()
-        self.master_public_key = root.PublicKey().hex()
+        self.extended_private_key = root.PrivateKey().hex()
+        self.extended_public_key = root.PublicKey().hex()
         child = self._derive_child(root, account, index)
-        self.public_key = child.PublicKey().hex()
         self.private_key = child.PrivateKey().hex()
+        self.public_key = child.PublicKey().hex()
         self.address = self._get_address(self.public_key)
         self.account_address = self._get_segwit(
             self.ADDR_PREFIX['account'],
