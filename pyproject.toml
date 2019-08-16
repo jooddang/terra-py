@@ -8,6 +8,7 @@ authors = ["etienne-napoleone <etienne@terra.money>"]
 python = "^3.6"
 bip32utils = "^0.3.0"
 mnemonic = "^0.18.0"
+bech32 = "^1.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"

@@ -16,6 +16,14 @@ version = "19.1.0"
 
 [[package]]
 category = "main"
+description = "Reference implementation for Bech32 and segwit addresses."
+name = "bech32"
+optional = false
+python-versions = "*"
+version = "1.1.0"
+
+[[package]]
+category = "main"
 description = "Utilities for generating and using Bitcoin Hierarchical Deterministic wallets (BIP0032)."
 name = "bip32utils"
 optional = false
@@ -246,12 +254,13 @@ python-versions = ">=2.7"
 version = "0.5.2"
 
 [metadata]
-content-hash = "991eccfa23e223cf61ee70c44e689ba79c6fec36f7f5996219fcd571864e5fdf"
+content-hash = "fad501e17e8312b375be2849749e9f73d9f1e3de94c90ea34c6f998e97c9597d"
 python-versions = "^3.6"
 
 [metadata.hashes]
 atomicwrites = ["03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4", "75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6"]
 attrs = ["69c0dbf2ed392de1cb5ec704444b08a5ef81680a61cb899dc08127123af36a79", "f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"]
+bech32 = ["5dde0114268ce7f12057dccd0bde51e44a50106231a8b127807d3aeca85f51e6", "dbd24eae005c0c3458ec803ab51c0994f030366cb09a668d1949ab09f15cdd5e"]
 bip32utils = ["5970f40fbb727a89d3cc06b6387b348252f7c8af6b3470df704276de728c48c2", "86125e16732101f17dbf4307ca0311a06ded0aca94220ac961e5bce0a444e972"]
 certifi = ["046832c04d4e752f37383b628bc601a7ea7211496b4638f6514d0e5b9acc4939", "945e3ba63a0b9f577b1395204e13c3a231f9bc0223888be653286534e5873695"]
 chardet = ["84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae", "fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"]
