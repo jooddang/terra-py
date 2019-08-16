@@ -29,3 +29,12 @@ class Account:
         self.addr = child.Address()
         self.public_key = binascii.hexlify(child.PublicKey()).decode()
         self.private_key = binascii.hexlify(child.PrivateKey()).decode()
+
+    def _hash160(self, public_key: bytes) -> bytes:
+        sha = hashlib.sha256()
+        rip = hashlib.new('ripemd160')
+        sha.update(public_key)
+        rip.update(sha.digest())
+        return rip.digest()
+
+    def _get_acc_addr(self):
