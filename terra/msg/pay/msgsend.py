@@ -1,4 +1,4 @@
-from terra.msg import Amount
+from terra.msg import Coin
 from terra.utils import JsonSerializable
 
 
@@ -6,7 +6,7 @@ class MsgSend(JsonSerializable):
 
     def __init__(
         self,
-        amount: [Amount],
+        amount: [Coin],
         from_address: str,
         to_address: str,
     ) -> None:
@@ -19,7 +19,7 @@ class MsgSendValue(JsonSerializable):
 
     def __init__(
         self,
-        amount: [Amount],
+        amount: [Coin],
         from_address: str,
         to_address: str,
     ) -> None:

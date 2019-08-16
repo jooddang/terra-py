@@ -11,12 +11,12 @@ FEE = {
 }
 
 
-def test_amount():
-    amount = msg.Amount(amount='1000', denom='uluna')
+def test_coin():
+    amount = msg.Coin(amount='1000', denom='uluna')
     assert amount.to_json() == json.dumps(FEE['amount'][0])
 
 
 def test_fee():
-    amount = msg.Amount(amount='1000', denom='uluna')
+    amount = msg.Coin(amount='1000', denom='uluna')
     fee = msg.Fee(gas='500', amount=[amount])
     assert fee.to_json() == json.dumps(FEE)
