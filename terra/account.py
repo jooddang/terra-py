@@ -1,4 +1,5 @@
 import binascii
+import hashlib
 
 from mnemonic import Mnemonic
 import bip32utils
