@@ -17,9 +17,9 @@ import os
 
 from terra import Account, msg
 
-acc = terra.Account(os.getenv('MNEMONIC'))
+acc = Account(os.getenv('MNEMONIC'))
 
-delegate = terra.msg.staking.MsgDelegate(
+delegate = msg.staking.MsgDelegate(
     delegator_address=acc.account_address,
     validator_address='terravaloper1p54hc4yy2ajg67j645dn73w3378j6k05vmx9r2',
     amount=msg.Amount(amount='10000', denom='uluna')
