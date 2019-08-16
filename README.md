@@ -13,21 +13,25 @@ todo
 ## Usage
 
 ```python
-from terra import msg
+import os
 
-m = msg.auth.StdTx(
-    fee=msg.Fee('10000', [msg.Amount('2000', 'uluna')]),
-    memo='test transaction',
-    msg=[
-        msg.pay.MsgSend(
-            amount=[msg.Amount('10', 'uluna')],
-            from_address='terra7wwemlk5j73artt5t6j8am08ql3qv1ptdx6akgk',
-            to_address='terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv',
-        ),
-    ],
+from terra import Account, msg
+
+acc = terra.Account(os.getenv('MNEMONIC'))
+
+delegate = terra.msg.staking.MsgDelegate(
+    delegator_address=acc.account_address,
+    validator_address='terravaloper1p54hc4yy2ajg67j645dn73w3378j6k05vmx9r2',
+    amount=msg.Amount(amount='10000', denom='uluna')
 )
 
-m.to_json()
+tx = msg.auth.StdTx(
+    fee=msg.Fee('10000', [msg.Amount('2000', 'uluna')]),
+    memo='delegating my LUNA',
+    msg=[delegate],
+)
+
+tx.to_json()
 ```
 
 ## Develop
