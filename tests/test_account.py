@@ -1,51 +1,27 @@
 from terra import Account
 
-acc_mnemonic = (
-    'bread genuine element reopen cliff power mean quiz mutual '
-    'six machine planet dry detect edit slim clap firm jelly '
-    'success narrow orange echo tomorrow'
-)
-bad_mnemonic = 'this is a bad mnemonic'
-acc_xprv_bytes = (
-    b'xprvA3nap1LYVDzy4hVsRfusMKgqPVcMawYjZXTWPonuy52fVAUTR6Y'
-    b'EASDCCsFs6Yn7ogwsc6nqAJU26guXTaUadNJvajCZ7eVyNH9CkQ24A1Z')
-acc_xprv_str = (
-    'xprvA3nap1LYVDzy4hVsRfusMKgqPVcMawYjZXTWPonuy52fVAUTR6Y'
-    'EASDCCsFs6Yn7ogwsc6nqAJU26guXTaUadNJvajCZ7eVyNH9CkQ24A1Z'
-)
+ACCOUNT = {
+    'account_address': 'terra1ganslgkvaen5gcqfpxu2fvqa08hxpfzn0ayw2s',
+    'address': '47670fa2ccee6744600909b8a4b01d79ee60a453',
+    'mnemonic': 'bread genuine element reopen cliff power mean quiz mutual '
+                'six machine planet dry detect edit slim clap firm jelly '
+                'success narrow orange echo tomorrow',
+    'operator_address': 'terravaloper1ganslgkvaen5gcqfpxu2fvqa08hxpfzn0jgn6r',
+    'private_key': '861c3746d1bf6bc83acac4c9e72dbe7cdcf944031823b1c7e1248d163'
+                   'c2b9c01',
+    'public_key': '032c2f944ff74e5f40d6c01b171386d3a868c90b25c46ec39a3f4c0702'
+                  'd4e2cbc6',
+    'seed': '271d8892dfc23ed6662a0023080144d0f538d1d002c701b98e813ecc7fab33a4'
+            'eef5f9288fd6ba7d68bc53ebd61ed453167fe669a08151ea4113dfdbe856f47a',
+}
 
 
-def test_account_key_as_bytes():
-    a = Account(acc_xprv_bytes)
-    assert isinstance(a.private_key, bytes)
-
-
-def test_account_key_as_string():
-    a = Account(acc_xprv_str)
-    assert isinstance(a.private_key, bytes)
-
-
-def test_account_from_mnemonic():
-    a = Account.from_mnemonic(acc_mnemonic)
-    assert isinstance(a.private_key, bytes)
-    assert a.private_key[:4] == b'xprv'
-    assert a.private_key == acc_xprv_bytes
-
-
-def test_public_key_getter():
-    a = Account(acc_xprv_bytes)
-    assert a.public_key is not None
-    assert a.public_key[:4] == b'xpub'
-
-
-def test_mnemonic_to_master_key():
-    assert isinstance(
-        Account._mnemonic_to_master_key(acc_mnemonic),
-        bytes,
-    )
-
-
-def test_master_key_to_extended_private_key():
-    mk = Account._mnemonic_to_master_key(acc_mnemonic)
-    xprv = Account._master_key_to_extended_private_key(mk)
-    assert xprv == acc_xprv_bytes
+def test_account():
+    a = Account(ACCOUNT['mnemonic'])
+    assert a.account_address == ACCOUNT['account_address']
+    assert a.address == ACCOUNT['address']
+    assert a.mnemonic == ACCOUNT['mnemonic']
+    assert a.operator_address == ACCOUNT['operator_address']
+    assert a.private_key == ACCOUNT['private_key']
+    assert a.public_key == ACCOUNT['public_key']
+    assert a.seed == ACCOUNT['seed']

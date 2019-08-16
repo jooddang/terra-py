@@ -1,43 +1,89 @@
-from typing import Type, TypeVar, Union
+import hashlib
 
-from btclib import bip32, bip39
-
-LUNA_HD_PATH = 'm/44\'/330\'/{}\'/0/{}'
-
-T = TypeVar('T')  # Binded to `cls` in `classmethod`s for the return type hint
+from mnemonic import Mnemonic
+import bech32
+import bip32utils
 
 
 class Account:
+    ADDR_PREFIX = {
+        'account': 'terra',
+        'operator': 'terravaloper',
+    }
 
-    def __init__(self, private_key: Union[bytes, str]) -> None:
-        """Represent a Terra account and its signing capabilities."""
-        try:
-            self.private_key = bytes(private_key, 'utf-8')
-        except TypeError:
-            self.private_key = private_key
-        self._public_key = None
+    def __init__(
+        self,
+        mnemonic: str,
+        account: int = 0,
+        index: int = 0
+    ) -> None:
+        """Class representing an account and its signing capabilities."""
+        self.mnemonic = mnemonic
+        self.seed = Mnemonic("english").to_seed(self.mnemonic).hex()
+        root = self._derive_root(self.seed)
+        child = self._derive_child(root, account, index)
+        self.private_key = child.PrivateKey().hex()
+        self.public_key = child.PublicKey().hex()
+        self.address = self._get_address(self.public_key)
+        self.account_address = self._get_segwit(
+            self.ADDR_PREFIX['account'],
+            self.address
+        )
+        self.operator_address = self._get_segwit(
+            self.ADDR_PREFIX['operator'],
+            self.address
+        )
 
-    @classmethod
-    def from_mnemonic(cls: Type[T], mnemonic: str, passphrase: str = '', account: int = 0, index: int = 0) -> T:  # noqa: E501
-        """Returns an `Account` instance build from an mnemonic,"""
-        master_key = cls._mnemonic_to_master_key(mnemonic, passphrase)
-        return cls(cls._master_key_to_extended_private_key(master_key))
+    def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
+        """Derive a root bip32 key object from seed."""
+        return bip32utils.BIP32Key.fromEntropy(bytes.fromhex(seed))
 
-    @staticmethod
-    def _mnemonic_to_master_key(mnemonic: str, passphrase: str = '') -> bytes:
-        """Returns a BIP39 master key from a mnemonic,"""
-        return bip39.mprv_from_mnemonic(mnemonic, passphrase, bip32.PRV[0])
+    def _derive_child(
+        self,
+        root: bip32utils.BIP32Key,
+        account: int = 0,
+        index: int = 0,
+    ) -> bip32utils.BIP32Key:
+        """Return a child key from a root bip32 Key object.
 
-    @staticmethod
-    def _master_key_to_extended_private_key(master_key: bytes, account: int = 0, index: int = 0) -> bytes:  # noqa: E501
-        """Returns a BIP32 extended private key from a BIP39 master key,"""
-        return bip32.derive(master_key, LUNA_HD_PATH.format(account, index))
-
-    @property
-    def public_key(self):
-        """Getter for the extended public key.
-        If it not yet defined, compute and set it.
+        Derived with the Luna HDPath "m/44'/330'/0'/0/0".
         """
-        if not self._public_key:
-            self._public_key = bip32.xpub_from_xprv(self.private_key)
-        return self._public_key
+        return root.ChildKey(
+            44 + bip32utils.BIP32_HARDEN
+        ).ChildKey(
+            330 + bip32utils.BIP32_HARDEN
+        ).ChildKey(
+            account + bip32utils.BIP32_HARDEN
+        ).ChildKey(
+            0
+        ).ChildKey(
+            index
+        )
+
+    def _get_address(self, public_key: str) -> str:
+        """Return the account address.
+
+        The address is the ripmd160 hash of the sha256 hash
+        of the public key.
+        """
+        public_key_bytes = bytes.fromhex(public_key)
+        sha = hashlib.sha256()
+        rip = hashlib.new('ripemd160')
+        sha.update(public_key_bytes)
+        rip.update(sha.digest())
+        return rip.digest().hex()
+
+    def _get_segwit(self, prefix: str, payload: str) -> str:
+        """Return a bech32 Segwit address.
+
+        Computed as bech32 string from the account prefix
+        and the account address.
+
+        Note: The `witver` should not be included.
+              This is why `bech32_encode` is used over `encode`
+              which includes the `witver` by default
+        """
+        return bech32.bech32_encode(
+            prefix,
+            bech32.convertbits(bytes.fromhex(payload), 8, 5),
+        )
