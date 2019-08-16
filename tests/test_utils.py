@@ -18,6 +18,5 @@ def test_nested_jsonserializable():
 
 def test_generate_salt():
     salt = generate_salt()
-    salt_two = generate_salt()
     assert len(salt) == 4
-    assert salt != salt_two
+    assert salt != generate_salt()

@@ -18,9 +18,9 @@ MSG_SEND = {
 
 
 def test_msgsendvalue():
-    amount = msg.Amount(amount='1000', denom='uluna')
+    coin = msg.Coin(amount='1000', denom='uluna')
     value = MsgSendValue(
-        amount=[amount],
+        amount=[coin],
         from_address='terra321',
         to_address='terra123',
     )
@@ -28,9 +28,9 @@ def test_msgsendvalue():
 
 
 def test_msgsend():
-    amount = msg.Amount(amount='1000', denom='uluna')
+    coin = msg.Coin(amount='1000', denom='uluna')
     msgsend = msg.pay.MsgSend(
-        amount=[amount],
+        amount=[coin],
         from_address='terra321',
         to_address='terra123',
     )

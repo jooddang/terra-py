@@ -5,7 +5,7 @@ from terra.msg.staking.msgdelegate import MsgDelegateValue
 from terra.msg.staking.msgbeginredelegate import MsgBeginRedelegateValue
 from terra.msg.staking.msgundelegate import MsgUndelegateValue
 
-AMOUNT = msg.Amount(amount='1000', denom='uluna')
+COIN = msg.Coin(amount='1000', denom='uluna')
 DELEGATOR_ADDRESS = ''
 VALIDATOR_ADDRESS = ''
 MSG_DELEGATE = {
@@ -13,7 +13,7 @@ MSG_DELEGATE = {
     'value': {
         'delegator_address': DELEGATOR_ADDRESS,
         'validator_address': VALIDATOR_ADDRESS,
-        'amount': AMOUNT.__dict__,
+        'amount': COIN.__dict__,
     }
 }
 MSG_BEGIN_REDELEGATE = {
@@ -22,7 +22,7 @@ MSG_BEGIN_REDELEGATE = {
         'delegator_address': DELEGATOR_ADDRESS,
         'validator_src_address': VALIDATOR_ADDRESS,
         'validator_dst_address': VALIDATOR_ADDRESS,
-        'amount': AMOUNT.__dict__,
+        'amount': COIN.__dict__,
     }
 }
 MSG_UNDELEGATE = {
@@ -30,7 +30,7 @@ MSG_UNDELEGATE = {
     'value': {
         'delegator_address': DELEGATOR_ADDRESS,
         'validator_address': VALIDATOR_ADDRESS,
-        'amount': AMOUNT.__dict__,
+        'amount': COIN.__dict__,
     }
 }
 
@@ -39,7 +39,7 @@ def test_msgdelegatevalue():
     value = MsgDelegateValue(
         delegator_address=DELEGATOR_ADDRESS,
         validator_address=VALIDATOR_ADDRESS,
-        amount=AMOUNT,
+        amount=COIN,
     )
     assert value.to_json() == json.dumps(MSG_DELEGATE['value'])
 
@@ -48,7 +48,7 @@ def test_msgdelegate():
     msgsend = msg.staking.MsgDelegate(
         delegator_address=DELEGATOR_ADDRESS,
         validator_address=VALIDATOR_ADDRESS,
-        amount=AMOUNT,
+        amount=COIN,
     )
     assert msgsend.to_json() == json.dumps(MSG_DELEGATE)
 
@@ -58,7 +58,7 @@ def test_msgbeginredelegatevalue():
         delegator_address=DELEGATOR_ADDRESS,
         validator_src_address=VALIDATOR_ADDRESS,
         validator_dst_address=VALIDATOR_ADDRESS,
-        amount=AMOUNT,
+        amount=COIN,
     )
     assert value.to_json() == json.dumps(MSG_BEGIN_REDELEGATE['value'])
 
@@ -68,7 +68,7 @@ def test_msgbeginredelegate():
         delegator_address=DELEGATOR_ADDRESS,
         validator_src_address=VALIDATOR_ADDRESS,
         validator_dst_address=VALIDATOR_ADDRESS,
-        amount=AMOUNT,
+        amount=COIN,
     )
     assert msgsend.to_json() == json.dumps(MSG_BEGIN_REDELEGATE)
 
@@ -77,7 +77,7 @@ def test_msgundelegatevalue():
     value = MsgUndelegateValue(
         delegator_address=DELEGATOR_ADDRESS,
         validator_address=VALIDATOR_ADDRESS,
-        amount=AMOUNT,
+        amount=COIN,
     )
     assert value.to_json() == json.dumps(MSG_UNDELEGATE['value'])
 
@@ -86,6 +86,6 @@ def test_msgundelegate():
     msgsend = msg.staking.MsgUndelegate(
         delegator_address=DELEGATOR_ADDRESS,
         validator_address=VALIDATOR_ADDRESS,
-        amount=AMOUNT,
+        amount=COIN,
     )
     assert msgsend.to_json() == json.dumps(MSG_UNDELEGATE)

@@ -1,4 +1,4 @@
-from terra.msg import Amount
+from terra.msg import Coin
 from terra.utils import JsonSerializable
 
 
@@ -8,7 +8,7 @@ class MsgDelegate(JsonSerializable):
         self,
         delegator_address: str,
         validator_address: str,
-        amount: Amount,
+        amount: Coin,
     ) -> None:
         """Represent the top level of a MsgDelegate message."""
         self.type = 'staking/MsgDelegate'
@@ -25,7 +25,7 @@ class MsgDelegateValue(JsonSerializable):
         self,
         delegator_address: str,
         validator_address: str,
-        amount: Amount,
+        amount: Coin,
     ) -> None:
         """Values of a MsgDelegate message."""
         self.delegator_address = delegator_address

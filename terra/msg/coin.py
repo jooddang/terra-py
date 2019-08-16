@@ -1,7 +1,7 @@
 from terra.utils import JsonSerializable
 
 
-class Amount(JsonSerializable):
+class Coin(JsonSerializable):
 
     def __init__(self, amount: str, denom: str) -> None:
         """Represent an amount of coin and its denomination."""
