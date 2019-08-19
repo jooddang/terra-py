@@ -31,6 +31,8 @@ tx = msg.auth.StdTx(
     msg=[delegate],
 )
 
+tx.sign_with(acc)
+
 tx.to_json()
 ```
 
