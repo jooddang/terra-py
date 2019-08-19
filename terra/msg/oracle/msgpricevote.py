@@ -16,7 +16,7 @@ class MsgPriceVote(JsonSerializable):
         If a hash_ is provided, it will override price and salt.
         """
         self.type = 'oracle/MsgPriceVote'
-        self.value = MsgPriceVoteValue(
+        self.value = MsgPriceVoteType(
             price,
             salt,
             denom,
@@ -25,7 +25,7 @@ class MsgPriceVote(JsonSerializable):
         )
 
 
-class MsgPriceVoteValue(JsonSerializable):
+class MsgPriceVoteType(JsonSerializable):
 
     def __init__(
         self,
@@ -35,7 +35,7 @@ class MsgPriceVoteValue(JsonSerializable):
         feeder: str,
         validator: str,
     ) -> None:
-        """Values of a MsgPriceVote message."""
+        """Types of a MsgPriceVote message."""
         self.price = price
         self.salt = salt
         self.denom = denom

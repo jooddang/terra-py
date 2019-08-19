@@ -12,14 +12,14 @@ class MsgDelegate(JsonSerializable):
     ) -> None:
         """Represent the top level of a MsgDelegate message."""
         self.type = 'staking/MsgDelegate'
-        self.value = MsgDelegateValue(
+        self.value = MsgDelegateType(
             delegator_address,
             validator_address,
             amount,
         )
 
 
-class MsgDelegateValue(JsonSerializable):
+class MsgDelegateType(JsonSerializable):
 
     def __init__(
         self,
@@ -27,7 +27,7 @@ class MsgDelegateValue(JsonSerializable):
         validator_address: str,
         amount: Coin,
     ) -> None:
-        """Values of a MsgDelegate message."""
+        """Types of a MsgDelegate message."""
         self.delegator_address = delegator_address
         self.validator_address = validator_address
         self.amount = amount

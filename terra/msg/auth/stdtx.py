@@ -15,10 +15,10 @@ class StdTx(JsonSerializable):
     ) -> None:
         """Represent the top level of a StdTx message."""
         self.type = 'auth/StdTx'
-        self.value = StdTxValue(fee, memo, msg, signatures)
+        self.value = StdTxType(fee, memo, msg, signatures)
 
 
-class StdTxValue(JsonSerializable):
+class StdTxType(JsonSerializable):
 
     def __init__(
         self,
@@ -27,7 +27,7 @@ class StdTxValue(JsonSerializable):
         msg: List[JsonSerializable] = [],
         signatures: List[JsonSerializable] = [],
     ) -> None:
-        """Values of a StdTx message."""
+        """Types of a StdTx message."""
         self.fee = fee
         self.memo = memo
         self.msg = msg

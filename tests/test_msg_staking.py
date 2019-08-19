@@ -1,9 +1,9 @@
 import json
 
 from terra import msg
-from terra.msg.staking.msgdelegate import MsgDelegateValue
-from terra.msg.staking.msgbeginredelegate import MsgBeginRedelegateValue
-from terra.msg.staking.msgundelegate import MsgUndelegateValue
+from terra.msg.staking.msgdelegate import MsgDelegateType
+from terra.msg.staking.msgbeginredelegate import MsgBeginRedelegateType
+from terra.msg.staking.msgundelegate import MsgUndelegateType
 
 COIN = msg.Coin(amount='1000', denom='uluna')
 DELEGATOR_ADDRESS = ''
@@ -35,8 +35,8 @@ MSG_UNDELEGATE = {
 }
 
 
-def test_msgdelegatevalue():
-    value = MsgDelegateValue(
+def test_msgdelegatetype():
+    value = MsgDelegateType(
         delegator_address=DELEGATOR_ADDRESS,
         validator_address=VALIDATOR_ADDRESS,
         amount=COIN,
@@ -53,8 +53,8 @@ def test_msgdelegate():
     assert msgsend.to_json() == json.dumps(MSG_DELEGATE)
 
 
-def test_msgbeginredelegatevalue():
-    value = MsgBeginRedelegateValue(
+def test_msgbeginredelegatetype():
+    value = MsgBeginRedelegateType(
         delegator_address=DELEGATOR_ADDRESS,
         validator_src_address=VALIDATOR_ADDRESS,
         validator_dst_address=VALIDATOR_ADDRESS,
@@ -73,8 +73,8 @@ def test_msgbeginredelegate():
     assert msgsend.to_json() == json.dumps(MSG_BEGIN_REDELEGATE)
 
 
-def test_msgundelegatevalue():
-    value = MsgUndelegateValue(
+def test_msgundelegatetype():
+    value = MsgUndelegateType(
         delegator_address=DELEGATOR_ADDRESS,
         validator_address=VALIDATOR_ADDRESS,
         amount=COIN,

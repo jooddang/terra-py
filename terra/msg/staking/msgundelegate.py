@@ -12,14 +12,14 @@ class MsgUndelegate(JsonSerializable):
     ) -> None:
         """Represent the top level of a MsgUndelegate message."""
         self.type = 'staking/MsgUndelegate'
-        self.value = MsgUndelegateValue(
+        self.value = MsgUndelegateType(
             delegator_address,
             validator_address,
             amount,
         )
 
 
-class MsgUndelegateValue(JsonSerializable):
+class MsgUndelegateType(JsonSerializable):
 
     def __init__(
         self,
@@ -27,7 +27,7 @@ class MsgUndelegateValue(JsonSerializable):
         validator_address: str,
         amount: Coin,
     ) -> None:
-        """Values of a MsgUndelegate message."""
+        """Types of a MsgUndelegate message."""
         self.delegator_address = delegator_address
         self.validator_address = validator_address
         self.amount = amount
