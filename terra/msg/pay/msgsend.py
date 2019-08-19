@@ -12,10 +12,10 @@ class MsgSend(JsonSerializable):
     ) -> None:
         """Represent the top level of a MsgSend message."""
         self.type = 'pay/MsgSend'
-        self.value = MsgSendType(amount, from_address, to_address)
+        self.value = MsgSendValue(amount, from_address, to_address)
 
 
-class MsgSendType(JsonSerializable):
+class MsgSendValue(JsonSerializable):
 
     def __init__(
         self,
@@ -23,7 +23,7 @@ class MsgSendType(JsonSerializable):
         from_address: str,
         to_address: str,
     ) -> None:
-        """Types of a MsgSend message."""
+        """Values of a MsgSend message."""
         self.amount = sorted(amount, key=lambda o: o.denom)
         self.from_address = from_address
         self.to_address = to_address

@@ -17,10 +17,13 @@ class StdSignMsg(JsonSerializable):
               construction through method parameters.
         """
         self.type = 'auth/StdSignMsg'
-        self.value = StdSignMsgType(signature, {'type': type_, 'value': value})
+        self.value = StdSignMsgValue(
+            signature,
+            {'type': type_, 'value': value}
+        )
 
 
-class StdSignMsgType(JsonSerializable):
+class StdSignMsgValue(JsonSerializable):
 
     def __init__(
         self,

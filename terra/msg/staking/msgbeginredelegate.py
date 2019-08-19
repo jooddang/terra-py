@@ -13,7 +13,7 @@ class MsgBeginRedelegate(JsonSerializable):
     ) -> None:
         """Represent the top level of a MsgBeginRedelegate message."""
         self.type = 'staking/MsgBeginRedelegate'
-        self.value = MsgBeginRedelegateType(
+        self.value = MsgBeginRedelegateValue(
             delegator_address,
             validator_src_address,
             validator_dst_address,
@@ -21,7 +21,7 @@ class MsgBeginRedelegate(JsonSerializable):
         )
 
 
-class MsgBeginRedelegateType(JsonSerializable):
+class MsgBeginRedelegateValue(JsonSerializable):
 
     def __init__(
         self,
@@ -30,7 +30,7 @@ class MsgBeginRedelegateType(JsonSerializable):
         validator_dst_address: str,
         amount: Coin,
     ) -> None:
-        """Types of a MsgBeginRedelegate message."""
+        """Values of a MsgBeginRedelegate message."""
         self.delegator_address = delegator_address
         self.validator_src_address = validator_src_address
         self.validator_dst_address = validator_dst_address

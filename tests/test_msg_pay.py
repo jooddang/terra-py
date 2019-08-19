@@ -1,7 +1,7 @@
 import json
 
 from terra import msg
-from terra.msg.pay.msgsend import MsgSendType
+from terra.msg.pay.msgsend import MsgSendValue
 
 
 MSG_SEND = {
@@ -19,7 +19,7 @@ MSG_SEND = {
 
 def test_msgsendvalue():
     coin = msg.Coin(amount='1000', denom='uluna')
-    value = MsgSendType(
+    value = MsgSendValue(
         amount=[coin],
         from_address='terra321',
         to_address='terra123',

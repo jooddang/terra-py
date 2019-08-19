@@ -1,8 +1,8 @@
 import json
 
 from terra import msg
-from terra.msg.oracle.msgpriceprevote import MsgPricePrevoteType
-from terra.msg.oracle.msgpricevote import MsgPriceVoteType
+from terra.msg.oracle.msgpriceprevote import MsgPricePrevoteValue
+from terra.msg.oracle.msgpricevote import MsgPriceVoteValue
 
 SALT = '8888'
 DENOM = 'ukrw'
@@ -31,8 +31,8 @@ MSG_PRICE_VOTE = {
 }
 
 
-def test_msgpriceprevotetype():
-    value = MsgPricePrevoteType(
+def test_msgpriceprevotevalue():
+    value = MsgPricePrevoteValue(
         hash_=HASH,
         denom=DENOM,
         feeder=FEEDER,
@@ -52,8 +52,8 @@ def test_msgpriceprevote():
     assert msgsend.to_json() == json.dumps(MSG_PRICE_PREVOTE)
 
 
-def test_msgpriceVotetype():
-    value = MsgPriceVoteType(
+def test_msgpriceVotevalue():
+    value = MsgPriceVoteValue(
         price=PRICE,
         salt=SALT,
         denom=DENOM,

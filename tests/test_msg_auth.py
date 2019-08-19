@@ -1,8 +1,8 @@
 import json
 
 from terra import msg
-from terra.msg.auth.stdtx import StdTxType
-from terra.msg.auth.stdsignmsg import StdSignMsgType
+from terra.msg.auth.stdtx import StdTxValue
+from terra.msg.auth.stdsignmsg import StdSignMsgValue
 
 STD_TX = {
     'type': 'auth/StdTx',
@@ -35,7 +35,7 @@ STD_SIGN_MSG = {
 def test_stdtxtype():
     coin = msg.Coin(amount='1000', denom='uluna')
     fee = msg.Fee(gas='500', amount=[coin])
-    value = StdTxType(fee=fee, memo='test', msg=[], signatures=[])
+    value = StdTxValue(fee=fee, memo='test', msg=[], signatures=[])
     assert value.to_json() == json.dumps(STD_TX['value'])
 
 
@@ -60,7 +60,7 @@ def test_stdtx_with_msg_msgsend():
 
 
 def test_stdsignmsgtype():
-    value = StdSignMsgType(
+    value = StdSignMsgValue(
         signature=STD_SIGN_MSG['value']['signature'],
         pub_key=STD_SIGN_MSG['value']['pub_key'],
     )
