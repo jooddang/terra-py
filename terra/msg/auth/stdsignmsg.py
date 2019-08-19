@@ -6,8 +6,8 @@ class StdSignMsg(JsonSerializable):
     def __init__(
         self,
         signature: str,
-        pub_key_type: str,
-        pub_key_value: str
+        pub_key_value: str,
+        pub_key_type: str = 'tendermint/PubKeySecp256k1',
     ) -> None:
         """Types of a StdSignMsg message.
 
