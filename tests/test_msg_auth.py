@@ -1,6 +1,6 @@
 import json
 
-from terra import msg
+from terra import Account, msg
 
 STD_TX = {
     'fee': {
@@ -42,6 +42,21 @@ def test_stdtx_with_msg_msgsend():
     fee = msg.Fee(gas='500', amount=[coin_stdtx])
     stdtx = msg.auth.StdTx(fee=fee, memo='test', msg=[msgsend], signatures=[])
     assert stdtx.msg[0] == msgsend
+
+
+def test_stdtx_sign():
+    mnemonic = (
+        'bread genuine element reopen cliff power mean quiz mutual '
+        'six machine planet dry detect edit slim clap firm jelly '
+        'success narrow orange echo tomorrow'
+    )
+    acc = Account(mnemonic)
+    coin = msg.Coin(amount='1000', denom='uluna')
+    fee = msg.Fee(gas='500', amount=[coin])
+    stdtx = msg.auth.StdTx(fee=fee, memo='test', msg=[], signatures=[])
+    stdtx.sign_with(acc)
+    # temporary
+    assert stdtx.signatures[0].signature == '1234'
 
 
 def test_stdsignmsg():
