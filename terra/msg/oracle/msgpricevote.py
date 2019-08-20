@@ -11,10 +11,7 @@ class MsgPriceVote(JsonSerializable):
         feeder: str,
         validator: str,
     ) -> None:
-        """Represent the top level of a MsgPriceVote message.
-
-        If a hash_ is provided, it will override price and salt.
-        """
+        """Represent the top level of a MsgPriceVote message."""
         self.type = 'oracle/MsgPriceVote'
         self.value = MsgPriceVoteValue(
             price,

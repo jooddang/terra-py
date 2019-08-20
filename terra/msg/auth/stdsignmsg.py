@@ -9,7 +9,7 @@ class StdSignMsg(JsonSerializable):
         pub_key_value: str,
         pub_key_type: str = 'tendermint/PubKeySecp256k1',
     ) -> None:
-        """Types of a StdSignMsg message.
+        """Values of a StdSignMsg message.
 
         Note: Abstract help with building the dictionnary by abstracting its
               construction through method parameters.

@@ -13,10 +13,7 @@ class MsgPricePrevote(JsonSerializable):
         feeder: str,
         validator: str,
     ) -> None:
-        """Represent the top level of a MsgPricePrevote message.
-
-        If a hash_ is provided, it will override price and salt.
-        """
+        """Represent the top level of a MsgPricePrevote message."""
         self.type = 'oracle/MsgPricePrevote'
         self.value = MsgPricePrevoteValue(
             self._metadata_to_hash(price, salt, denom, feeder),
