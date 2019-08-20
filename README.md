@@ -15,7 +15,7 @@ todo
 ```python
 import os
 
-from terra import Coin, msg
+from terra import Account, msg
 
 acc = Account(os.getenv('MNEMONIC'))
 
