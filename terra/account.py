@@ -15,7 +15,10 @@ class Account:
         self,
         mnemonic: str,
         account: int = 0,
-        index: int = 0
+        index: int = 0,
+        sequence: str = None,
+        account_number: str = None,
+        chain_id: str = None,
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
@@ -33,6 +36,9 @@ class Account:
             self.ADDR_PREFIX['operator'],
             self.address
         )
+        self.sequence = sequence
+        self.account_number = account_number
+        self.chain_id = chain_id
 
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
