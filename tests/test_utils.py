@@ -1,4 +1,4 @@
-from terra.utils import generate_salt, JsonSerializable
+from terra.utils import crypto, JsonSerializable
 
 
 def test_jsonserializable():
@@ -17,6 +17,6 @@ def test_nested_jsonserializable():
 
 
 def test_generate_salt():
-    salt = generate_salt()
+    salt = crypto.generate_salt()
     assert len(salt) == 4
-    assert salt != generate_salt()
+    assert salt != crypto.generate_salt()
