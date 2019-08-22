@@ -1,14 +1,10 @@
 from typing import List
 import base64
-import hashlib
-
-from ecdsa import SigningKey, SECP256k1
-from ecdsa.util import sigencode_string_canonize
 
 from terra import Account
 from terra.msg import Fee
 from terra.msg.auth import StdSignMsg
-from terra.utils import JsonSerializable
+from terra.utils import crypto, JsonSerializable
 
 
 class StdTx(JsonSerializable):
@@ -26,7 +22,24 @@ class StdTx(JsonSerializable):
         self.msg = msg
         self.signatures = signatures
 
-    def sign_with(self, account: Account):
+    def sign_with(self, account: Account) -> None:
+        """Helper function to sign with a given account.
+
+        Sign the payload with this structure:
+        ```
+        Fee           auth.StdFee `json:"fee"`
+        Memo          string      `json:"memo"`
+        Msgs          []sdk.Msg   `json:"msgs"`
+        Sequence      uint64      `json:"sequence"`
+        AccountNumber uint64      `json:"account_number"`
+        ChainID       string      `json:"chain_id"`
+        ```
+        Order the keys alphabeticaly while dumping to json.
+        Sha256 and then SECP256k1 encrypt it with the private key
+        of the account passed via the `account` argument.
+        Creates a auth/StdSignMsg with that signature and adds it
+        to this stdTx signatures.
+        """
         payload = JsonSerializable()
         payload.fee = self.fee
         payload.memo = self.memo
@@ -34,20 +47,15 @@ class StdTx(JsonSerializable):
         payload.sequence = account.sequence
         payload.account_number = account.account_number
         payload.chain_id = account.chain_id
-        # TODO refactor crypto stuff out in a new `utils.crypto`
-        sk = SigningKey.from_string(
-            bytes.fromhex(account.private_key),
-            curve=SECP256k1
-        )
-        signature = sk.sign_deterministic(
-            payload.to_json(sort=True).encode(),
-            hashfunc=hashlib.sha256,
-            sigencode=sigencode_string_canonize,
+        signature = crypto.sha256_and_sign(
+            payload=payload.to_json(sort=True).strip(),
+            private_key=account.private_key,
         )
         stdsignmsg = StdSignMsg(
-            signature=base64.encodebytes(signature).decode(),
+            # `decode()` to convert the base64 bytes array to its str repr
+            signature=base64.b64encode(signature).decode(),
             pub_key_value=base64.b64encode(
-                bytes.fromhex(account.public_key)
+                bytes.fromhex(account.public_key),
             ).decode(),
         )
         self.signatures.append(stdsignmsg)
