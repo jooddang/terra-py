@@ -67,5 +67,5 @@ def test_stdsignmsg():
     )
     assert stdsignmsg.to_json() == json.dumps(
         STD_SIGN_MSG,
-        separators=(',', ':')
+        separators=(',', ':'),
     )
