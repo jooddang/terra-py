@@ -10,7 +10,7 @@ def generate_salt() -> str:
     return uuid.uuid4().hex[:4]
 
 
-def sign(
+def sha256_and_sign(
     payload: str,
     private_key: str,
     curve: curves.Curve = SECP256k1,
