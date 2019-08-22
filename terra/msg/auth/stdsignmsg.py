@@ -1,3 +1,5 @@
+from typing import Optional
+
 from terra.utils import JsonSerializable
 
 
@@ -7,7 +9,7 @@ class StdSignMsg(JsonSerializable):
         self,
         signature: str,
         pub_key_value: str,
-        pub_key_type: str = 'tendermint/PubKeySecp256k1',
+        pub_key_type: Optional[str] = 'tendermint/PubKeySecp256k1',
     ) -> None:
         """Values of a StdSignMsg message.
 

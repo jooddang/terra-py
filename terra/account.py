@@ -1,3 +1,4 @@
+from typing import Optional
 import hashlib
 
 from mnemonic import Mnemonic
@@ -16,9 +17,9 @@ class Account:
         mnemonic: str,
         account: int = 0,
         index: int = 0,
-        sequence: str = None,
-        account_number: str = None,
-        chain_id: str = None,
+        sequence: Optional[str] = None,
+        account_number: Optional[str] = None,
+        chain_id: Optional[str] = None,
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
@@ -40,15 +41,15 @@ class Account:
         self.account_number = account_number
         self.chain_id = chain_id
 
-    def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
+    def _derive_root(self, seed: Optional[str]) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
         return bip32utils.BIP32Key.fromEntropy(bytes.fromhex(seed))
 
     def _derive_child(
         self,
         root: bip32utils.BIP32Key,
-        account: int = 0,
-        index: int = 0,
+        account: Optional[int] = 0,
+        index: Optional[int] = 0,
     ) -> bip32utils.BIP32Key:
         """Return a child key from a root bip32 Key object.
 

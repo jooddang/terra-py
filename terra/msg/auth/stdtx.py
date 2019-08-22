@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 import base64
 
 from terra import Account
@@ -13,8 +13,8 @@ class StdTx(JsonSerializable):
         self,
         fee: Fee,
         memo: str,
-        msg: List[JsonSerializable] = [],
-        signatures: List[JsonSerializable] = [],
+        msg: Optional[List[JsonSerializable]] = [],
+        signatures: Optional[List[JsonSerializable]] = [],
     ) -> None:
         """Values of a StdTx message."""
         self.fee = fee
