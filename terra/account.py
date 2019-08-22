@@ -30,11 +30,11 @@ class Account:
         self.address = self._get_address(self.public_key)
         self.account_address = self._get_segwit(
             self.ADDR_PREFIX['account'],
-            self.address
+            self.address,
         )
         self.operator_address = self._get_segwit(
             self.ADDR_PREFIX['operator'],
-            self.address
+            self.address,
         )
         self.sequence = sequence
         self.account_number = account_number
@@ -55,15 +55,15 @@ class Account:
         Derived with the Luna HDPath "m/44'/330'/0'/0/0".
         """
         return root.ChildKey(
-            44 + bip32utils.BIP32_HARDEN
+            44 + bip32utils.BIP32_HARDEN,
         ).ChildKey(
-            330 + bip32utils.BIP32_HARDEN
+            330 + bip32utils.BIP32_HARDEN,
         ).ChildKey(
-            account + bip32utils.BIP32_HARDEN
+            account + bip32utils.BIP32_HARDEN,
         ).ChildKey(
-            0
+            0,
         ).ChildKey(
-            index
+            index,
         )
 
     def _get_address(self, public_key: str) -> str:

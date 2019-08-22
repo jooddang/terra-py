@@ -17,7 +17,7 @@ MSG_PRICE_PREVOTE = {
         'denom': DENOM,
         'feeder': FEEDER,
         'validator': VALIDATOR,
-    }
+    },
 }
 MSG_PRICE_VOTE = {
     'type': 'oracle/MsgPriceVote',
@@ -27,7 +27,7 @@ MSG_PRICE_VOTE = {
         'denom': DENOM,
         'feeder': FEEDER,
         'validator': VALIDATOR,
-    }
+    },
 }
 
 

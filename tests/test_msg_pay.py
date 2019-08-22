@@ -13,7 +13,7 @@ MSG_SEND = {
         }],
         'from_address': 'terra321',
         'to_address': 'terra123',
-    }
+    },
 }
 
 

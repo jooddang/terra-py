@@ -14,7 +14,7 @@ MSG_DELEGATE = {
         'delegator_address': DELEGATOR_ADDRESS,
         'validator_address': VALIDATOR_ADDRESS,
         'amount': COIN.__dict__,
-    }
+    },
 }
 MSG_BEGIN_REDELEGATE = {
     'type': 'staking/MsgBeginRedelegate',
@@ -23,7 +23,7 @@ MSG_BEGIN_REDELEGATE = {
         'validator_src_address': VALIDATOR_ADDRESS,
         'validator_dst_address': VALIDATOR_ADDRESS,
         'amount': COIN.__dict__,
-    }
+    },
 }
 MSG_UNDELEGATE = {
     'type': 'staking/MsgUndelegate',
@@ -31,7 +31,7 @@ MSG_UNDELEGATE = {
         'delegator_address': DELEGATOR_ADDRESS,
         'validator_address': VALIDATOR_ADDRESS,
         'amount': COIN.__dict__,
-    }
+    },
 }
 
 
