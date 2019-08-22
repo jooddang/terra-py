@@ -23,16 +23,16 @@ class StdTx(JsonSerializable):
         self.signatures = signatures
 
     def sign_with(self, account: Account) -> None:
-        """Helper function to sign with a given account.
+        """Helper function to sign the StdTx with a given account.
 
-        Sign the payload with this structure:
+        Sign the tx payload built with this structure:
         ```
-        Fee           auth.StdFee `json:"fee"`
-        Memo          string      `json:"memo"`
-        Msgs          []sdk.Msg   `json:"msgs"`
-        Sequence      uint64      `json:"sequence"`
-        AccountNumber uint64      `json:"account_number"`
-        ChainID       string      `json:"chain_id"`
+        Fee           Fee               `json:"fee"`
+        Memo          string            `json:"memo"`
+        Msgs          JsonSerializable  `json:"msgs"`
+        Sequence      string            `json:"sequence"`
+        AccountNumber string            `json:"account_number"`
+        ChainID       string            `json:"chain_id"`
         ```
         Order the keys alphabeticaly while dumping to json.
         Sha256 and then SECP256k1 encrypt it with the private key
