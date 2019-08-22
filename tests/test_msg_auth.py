@@ -28,7 +28,7 @@ def test_stdtx():
     coin = msg.Coin(amount='1000', denom='uluna')
     fee = msg.Fee(gas='500', amount=[coin])
     stdtx = msg.auth.StdTx(fee=fee, memo='test', msg=[], signatures=[])
-    assert stdtx.to_json() == json.dumps(STD_TX)
+    assert stdtx.to_json() == json.dumps(STD_TX, separators=(',', ':'))
 
 
 def test_stdtx_with_msg_msgsend():
@@ -65,4 +65,7 @@ def test_stdsignmsg():
         pub_key_type=STD_SIGN_MSG['pub_key']['type'],
         pub_key_value=STD_SIGN_MSG['pub_key']['value'],
     )
-    assert stdsignmsg.to_json() == json.dumps(STD_SIGN_MSG)
+    assert stdsignmsg.to_json() == json.dumps(
+        STD_SIGN_MSG,
+        separators=(',', ':')
+    )

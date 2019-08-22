@@ -41,7 +41,10 @@ def test_msgdelegatevalue():
         validator_address=VALIDATOR_ADDRESS,
         amount=COIN,
     )
-    assert value.to_json() == json.dumps(MSG_DELEGATE['value'])
+    assert value.to_json() == json.dumps(
+        MSG_DELEGATE['value'],
+        separators=(',', ':'),
+    )
 
 
 def test_msgdelegate():
@@ -50,7 +53,10 @@ def test_msgdelegate():
         validator_address=VALIDATOR_ADDRESS,
         amount=COIN,
     )
-    assert msgsend.to_json() == json.dumps(MSG_DELEGATE)
+    assert msgsend.to_json() == json.dumps(
+        MSG_DELEGATE,
+        separators=(',', ':'),
+    )
 
 
 def test_msgbeginredelegatevalue():
@@ -60,7 +66,10 @@ def test_msgbeginredelegatevalue():
         validator_dst_address=VALIDATOR_ADDRESS,
         amount=COIN,
     )
-    assert value.to_json() == json.dumps(MSG_BEGIN_REDELEGATE['value'])
+    assert value.to_json() == json.dumps(
+        MSG_BEGIN_REDELEGATE['value'],
+        separators=(',', ':'),
+    )
 
 
 def test_msgbeginredelegate():
@@ -70,7 +79,10 @@ def test_msgbeginredelegate():
         validator_dst_address=VALIDATOR_ADDRESS,
         amount=COIN,
     )
-    assert msgsend.to_json() == json.dumps(MSG_BEGIN_REDELEGATE)
+    assert msgsend.to_json() == json.dumps(
+        MSG_BEGIN_REDELEGATE,
+        separators=(',', ':'),
+    )
 
 
 def test_msgundelegatevalue():
@@ -79,7 +91,10 @@ def test_msgundelegatevalue():
         validator_address=VALIDATOR_ADDRESS,
         amount=COIN,
     )
-    assert value.to_json() == json.dumps(MSG_UNDELEGATE['value'])
+    assert value.to_json() == json.dumps(
+        MSG_UNDELEGATE['value'],
+        separators=(',', ':'),
+    )
 
 
 def test_msgundelegate():
@@ -88,4 +103,7 @@ def test_msgundelegate():
         validator_address=VALIDATOR_ADDRESS,
         amount=COIN,
     )
-    assert msgsend.to_json() == json.dumps(MSG_UNDELEGATE)
+    assert msgsend.to_json() == json.dumps(
+        MSG_UNDELEGATE,
+        separators=(',', ':'),
+    )
