@@ -11,7 +11,7 @@ class ReturnType():
     ASYNC = 'async'
     SYNC = 'sync'
 
-    def __init__() -> None:
+    def __init__(self) -> None:
         """Return types enum."""
         pass
 
