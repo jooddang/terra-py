@@ -10,9 +10,9 @@ class JsonSerializable:
 
         Note: Sort keys by default. Usefull for signing.
         """
-
         return json.dumps(
             self.__dict__,
             sort_keys=sort,
-            default=lambda o: o.__dict__
+            separators=(',', ':'),
+            default=lambda o: o.__dict__,
         )
