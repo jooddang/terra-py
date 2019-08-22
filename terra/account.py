@@ -15,7 +15,10 @@ class Account:
         self,
         mnemonic: str,
         account: int = 0,
-        index: int = 0
+        index: int = 0,
+        sequence: str = None,
+        account_number: str = None,
+        chain_id: str = None,
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
@@ -27,12 +30,15 @@ class Account:
         self.address = self._get_address(self.public_key)
         self.account_address = self._get_segwit(
             self.ADDR_PREFIX['account'],
-            self.address
+            self.address,
         )
         self.operator_address = self._get_segwit(
             self.ADDR_PREFIX['operator'],
-            self.address
+            self.address,
         )
+        self.sequence = sequence
+        self.account_number = account_number
+        self.chain_id = chain_id
 
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
@@ -49,15 +55,15 @@ class Account:
         Derived with the Luna HDPath "m/44'/330'/0'/0/0".
         """
         return root.ChildKey(
-            44 + bip32utils.BIP32_HARDEN
+            44 + bip32utils.BIP32_HARDEN,
         ).ChildKey(
-            330 + bip32utils.BIP32_HARDEN
+            330 + bip32utils.BIP32_HARDEN,
         ).ChildKey(
-            account + bip32utils.BIP32_HARDEN
+            account + bip32utils.BIP32_HARDEN,
         ).ChildKey(
-            0
+            0,
         ).ChildKey(
-            index
+            index,
         )
 
     def _get_address(self, public_key: str) -> str:

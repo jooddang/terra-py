@@ -17,7 +17,7 @@ MSG_PRICE_PREVOTE = {
         'denom': DENOM,
         'feeder': FEEDER,
         'validator': VALIDATOR,
-    }
+    },
 }
 MSG_PRICE_VOTE = {
     'type': 'oracle/MsgPriceVote',
@@ -27,7 +27,7 @@ MSG_PRICE_VOTE = {
         'denom': DENOM,
         'feeder': FEEDER,
         'validator': VALIDATOR,
-    }
+    },
 }
 
 
@@ -38,7 +38,10 @@ def test_msgpriceprevotevalue():
         feeder=FEEDER,
         validator=VALIDATOR,
     )
-    assert value.to_json() == json.dumps(MSG_PRICE_PREVOTE['value'])
+    assert value.to_json() == json.dumps(
+        MSG_PRICE_PREVOTE['value'],
+        separators=(',', ':'),
+    )
 
 
 def test_msgpriceprevote():
@@ -49,7 +52,10 @@ def test_msgpriceprevote():
         feeder=FEEDER,
         validator=VALIDATOR,
     )
-    assert msgsend.to_json() == json.dumps(MSG_PRICE_PREVOTE)
+    assert msgsend.to_json() == json.dumps(
+        MSG_PRICE_PREVOTE,
+        separators=(',', ':'),
+    )
 
 
 def test_msgpriceVotevalue():
@@ -60,7 +66,10 @@ def test_msgpriceVotevalue():
         feeder=FEEDER,
         validator=VALIDATOR,
     )
-    assert value.to_json() == json.dumps(MSG_PRICE_VOTE['value'])
+    assert value.to_json() == json.dumps(
+        MSG_PRICE_VOTE['value'],
+        separators=(',', ':'),
+    )
 
 
 def test_msgpriceVote():
@@ -71,4 +80,7 @@ def test_msgpriceVote():
         feeder=FEEDER,
         validator=VALIDATOR,
     )
-    assert msgsend.to_json() == json.dumps(MSG_PRICE_VOTE)
+    assert msgsend.to_json() == json.dumps(
+        MSG_PRICE_VOTE,
+        separators=(',', ':'),
+    )

@@ -22,11 +22,11 @@ acc = Account(os.getenv('MNEMONIC'))
 delegate = msg.staking.MsgDelegate(
     delegator_address=acc.account_address,
     validator_address='terravaloper1p54hc4yy2ajg67j645dn73w3378j6k05vmx9r2',
-    amount=msg.Amount(amount='10000', denom='uluna')
+    amount=msg.Coin(amount='10000', denom='uluna')
 )
 
 tx = msg.auth.StdTx(
-    fee=msg.Fee('10000', [msg.Amount('2000', 'uluna')]),
+    fee=msg.Fee('10000', [msg.Coin('2000', 'uluna')]),
     memo='delegating my LUNA',
     msg=[delegate],
 )

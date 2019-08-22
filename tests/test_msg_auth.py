@@ -28,7 +28,7 @@ def test_stdtx():
     coin = msg.Coin(amount='1000', denom='uluna')
     fee = msg.Fee(gas='500', amount=[coin])
     stdtx = msg.auth.StdTx(fee=fee, memo='test', msg=[], signatures=[])
-    assert stdtx.to_json() == json.dumps(STD_TX)
+    assert stdtx.to_json() == json.dumps(STD_TX, separators=(',', ':'))
 
 
 def test_stdtx_with_msg_msgsend():
@@ -45,18 +45,34 @@ def test_stdtx_with_msg_msgsend():
 
 
 def test_stdtx_sign():
-    mnemonic = (
-        'bread genuine element reopen cliff power mean quiz mutual '
-        'six machine planet dry detect edit slim clap firm jelly '
-        'success narrow orange echo tomorrow'
+    acc = Account(
+        'bread genuine element reopen cliff power mean quiz mutual six '
+        'machine planet dry detect edit slim clap firm jelly success na'
+        'rrow orange echo tomorrow',
+        sequence='0',
+        account_number='0',
+        chain_id='soju',
     )
-    acc = Account(mnemonic)
-    coin = msg.Coin(amount='1000', denom='uluna')
-    fee = msg.Fee(gas='500', amount=[coin])
-    stdtx = msg.auth.StdTx(fee=fee, memo='test', msg=[], signatures=[])
-    stdtx.sign_with(acc)
+    send = msg.pay.MsgSend(
+        amount=[msg.Coin(amount='1000000', denom='uluna')],
+        from_address=acc.account_address,
+        to_address='terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv',
+    )
+    tx = msg.auth.StdTx(
+        fee=msg.Fee('200000', [msg.Coin('1000', 'uluna')]),
+        memo='library test',
+        msg=[send],
+    )
+    tx.sign_with(acc)
     # temporary
-    assert stdtx.signatures[0].signature == '1234'
+    assert tx.signatures[0].signature == (
+        'afTjzZ7QASZHTvMAQpRsYl0MDPNqksSC80NihrbXD2FkfGNNpf3JdOjjzSNVpw7hmtE9i'
+        'S37u/mXib7jwPCd4A=='
+    )
+    assert tx.signatures[0].pub_key['type'] == 'tendermint/PubKeySecp256k1'
+    assert tx.signatures[0].pub_key['value'] == (
+        'AywvlE/3Tl9A1sAbFxOG06hoyQslxG7Dmj9MBwLU4svG'
+    )
 
 
 def test_stdsignmsg():
@@ -65,4 +81,7 @@ def test_stdsignmsg():
         pub_key_type=STD_SIGN_MSG['pub_key']['type'],
         pub_key_value=STD_SIGN_MSG['pub_key']['value'],
     )
-    assert stdsignmsg.to_json() == json.dumps(STD_SIGN_MSG)
+    assert stdsignmsg.to_json() == json.dumps(
+        STD_SIGN_MSG,
+        separators=(',', ':'),
+    )
