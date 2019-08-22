@@ -25,7 +25,7 @@ delegate = msg.staking.MsgDelegate(
     amount=msg.Coin(amount='10000', denom='uluna')
 )
 
-tx = msg.auth.StdTx(
+tx = msg.Tx(
     fee=msg.Fee('10000', [msg.Coin('2000', 'uluna')]),
     memo='delegating my LUNA',
     msg=[delegate],

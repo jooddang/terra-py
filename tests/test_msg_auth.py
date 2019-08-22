@@ -64,7 +64,6 @@ def test_stdtx_sign():
         msg=[send],
     )
     tx.sign_with(acc)
-    # temporary
     assert tx.signatures[0].signature == (
         'afTjzZ7QASZHTvMAQpRsYl0MDPNqksSC80NihrbXD2FkfGNNpf3JdOjjzSNVpw7hmtE9i'
         'S37u/mXib7jwPCd4A=='
