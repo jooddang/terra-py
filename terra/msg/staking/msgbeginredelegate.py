@@ -3,7 +3,6 @@ from terra.utils import JsonSerializable
 
 
 class MsgBeginRedelegate(JsonSerializable):
-
     def __init__(
         self,
         delegator_address: str,
@@ -12,7 +11,7 @@ class MsgBeginRedelegate(JsonSerializable):
         amount: Coin,
     ) -> None:
         """Represent the top level of a MsgBeginRedelegate message."""
-        self.type = 'staking/MsgBeginRedelegate'
+        self.type = "staking/MsgBeginRedelegate"
         self.value = MsgBeginRedelegateValue(
             delegator_address,
             validator_src_address,
@@ -22,7 +21,6 @@ class MsgBeginRedelegate(JsonSerializable):
 
 
 class MsgBeginRedelegateValue(JsonSerializable):
-
     def __init__(
         self,
         delegator_address: str,

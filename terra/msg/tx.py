@@ -6,18 +6,23 @@ from terra.utils import JsonSerializable
 from terra.msg.auth import StdTx
 
 
-class ReturnType():
-    BLOCK = 'block'
-    ASYNC = 'async'
-    SYNC = 'sync'
+class ReturnType:
+    BLOCK = "block"
+    ASYNC = "async"
+    SYNC = "sync"
 
     def __init__(self) -> None:
-        """Return types enum."""
+        """Return types enum.
+
+        Types are:
+        - Block : inclusion in block
+        - Async : right away
+        - Sync  : after checkTx has passed
+        """
         pass
 
 
 class Tx(JsonSerializable):
-
     def __init__(
         self,
         fee: Fee,
@@ -30,12 +35,7 @@ class Tx(JsonSerializable):
 
         Abstract away creation of a StdTx and its broadcast body.
         """
-        self.tx = StdTx(
-            fee=fee,
-            memo=memo,
-            msg=msg,
-            signatures=signatures,
-        )
+        self.tx = StdTx(fee=fee, memo=memo, msg=msg, signatures=signatures)
         self.mode = mode
 
     def sign_with(self, account: Account) -> None:
