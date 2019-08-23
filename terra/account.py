@@ -1,4 +1,3 @@
-from typing import Optional
 import hashlib
 
 from mnemonic import Mnemonic
@@ -16,7 +15,7 @@ class Account:
         index: int = 0,
         sequence: str = "0",
         account_number: str = "0",
-        chain_id: Optional[str] = None,
+        chain_id: str = "",
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic

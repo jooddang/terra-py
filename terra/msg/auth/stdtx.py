@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 import base64
 
 from terra import Account
@@ -69,7 +69,7 @@ class SignPayload(JsonSerializable):
         msg: List[JsonSerializable],
         sequence: str,
         account_number: str,
-        chain_id: Optional[str],
+        chain_id: str,
     ) -> None:
         """StdTx structured as a payload ready to be signed."""
         self.fee = fee
