@@ -23,6 +23,10 @@ jobs:
           command: |
             poetry run flake8 .
       - run:
+          name: Static type checking
+          command: |
+            poetry run mypy --ignore-missing-imports .
+      - run:
           name: Test and coverage
           command: |
             poetry run coverage run --source terra -m pytest -v

@@ -57,8 +57,8 @@ def test_stdtx_sign():
     )
     tx.sign_with(acc)
     assert tx.signatures[0].signature == (
-        "afTjzZ7QASZHTvMAQpRsYl0MDPNqksSC80NihrbXD2FkfGNNpf3JdOjjzSNVpw7hmtE9i"
-        "S37u/mXib7jwPCd4A=="
+        "f2nHGTGqZr8CiMVcycdEL7DUJJm9Q60sQv7GxqOOOv1Sm6f4+XyiCmsu+"
+        "ViGKiVPVxhRf7jtxVLgkbIekYE26w=="
     )
     assert tx.signatures[0].pub_key["type"] == "tendermint/PubKeySecp256k1"
     assert tx.signatures[0].pub_key["value"] == (

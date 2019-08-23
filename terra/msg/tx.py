@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 
 from terra import Account
 from terra.msg import Fee
@@ -27,9 +27,9 @@ class Tx(JsonSerializable):
         self,
         fee: Fee,
         memo: str,
-        mode: Optional[str] = ReturnType.BLOCK,
-        msg: Optional[List[JsonSerializable]] = [],
-        signatures: Optional[List[JsonSerializable]] = [],
+        mode: str = ReturnType.BLOCK,
+        msg: List[JsonSerializable] = [],
+        signatures: List[JsonSerializable] = [],
     ) -> None:
         """Abstracted transaction class.
 
