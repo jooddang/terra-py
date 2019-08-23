@@ -1,9 +1,8 @@
-from typing import Optional
 import json
 
 
 class JsonSerializable:
-    def to_json(self, sort: Optional[bool] = False) -> str:
+    def to_json(self, sort: bool = False) -> str:
         """Return the `json.dumps` of the current object.
         If one of the attributes in `__dict__` is not serializable to json,
         assume it's an object and gather its attributes via `__dict__`.

@@ -12,8 +12,8 @@ class StdTx(JsonSerializable):
         self,
         fee: Fee,
         memo: str,
-        msg: Optional[List[JsonSerializable]] = [],
-        signatures: Optional[List[JsonSerializable]] = [],
+        msg: List[JsonSerializable] = [],
+        signatures: List[JsonSerializable] = [],
     ) -> None:
         """Values of a StdTx message."""
         self.fee = fee
@@ -39,13 +39,14 @@ class StdTx(JsonSerializable):
         Creates a auth/StdSignMsg with that signature and adds it
         to this stdTx signatures.
         """
-        payload = JsonSerializable()
-        payload.fee = self.fee
-        payload.memo = self.memo
-        payload.msgs = self.msg
-        payload.sequence = account.sequence
-        payload.account_number = account.account_number
-        payload.chain_id = account.chain_id
+        payload = SignPayload(
+            fee=self.fee,
+            memo=self.memo,
+            msg=self.msg,
+            sequence=account.sequence,
+            account_number=account.account_number,
+            chain_id=account.chain_id,
+        )
         signature = crypto.sha256_and_sign(
             payload=payload.to_json(sort=True).strip(),
             private_key=account.private_key,
@@ -58,3 +59,22 @@ class StdTx(JsonSerializable):
             ).decode(),
         )
         self.signatures.append(stdsignmsg)
+
+
+class SignPayload(JsonSerializable):
+    def __init__(
+        self,
+        fee: Fee,
+        memo: str,
+        msg: List[JsonSerializable],
+        sequence: str,
+        account_number: str,
+        chain_id: Optional[str],
+    ) -> None:
+        """StdTx structured as a payload ready to be signed."""
+        self.fee = fee
+        self.memo = memo
+        self.msg = msg
+        self.sequence = sequence
+        self.account_number = account_number
+        self.chain_id = chain_id
