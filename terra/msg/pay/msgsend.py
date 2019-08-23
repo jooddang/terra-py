@@ -3,25 +3,17 @@ from terra.utils import JsonSerializable
 
 
 class MsgSend(JsonSerializable):
-
     def __init__(
-        self,
-        amount: [Coin],
-        from_address: str,
-        to_address: str,
+        self, amount: [Coin], from_address: str, to_address: str
     ) -> None:
         """Represent the top level of a MsgSend message."""
-        self.type = 'pay/MsgSend'
+        self.type = "pay/MsgSend"
         self.value = MsgSendValue(amount, from_address, to_address)
 
 
 class MsgSendValue(JsonSerializable):
-
     def __init__(
-        self,
-        amount: [Coin],
-        from_address: str,
-        to_address: str,
+        self, amount: [Coin], from_address: str, to_address: str
     ) -> None:
         """Values of a MsgSend message."""
         self.amount = sorted(amount, key=lambda o: o.denom)

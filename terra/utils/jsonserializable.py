@@ -3,7 +3,6 @@ import json
 
 
 class JsonSerializable:
-
     def to_json(self, sort: Optional[bool] = False) -> str:
         """Return the `json.dumps` of the current object.
         If one of the attributes in `__dict__` is not serializable to json,
@@ -14,6 +13,6 @@ class JsonSerializable:
         return json.dumps(
             self.__dict__,
             sort_keys=sort,
-            separators=(',', ':'),
+            separators=(",", ":"),
             default=lambda o: o.__dict__,
         )

@@ -8,7 +8,6 @@ from terra.utils import crypto, JsonSerializable
 
 
 class StdTx(JsonSerializable):
-
     def __init__(
         self,
         fee: Fee,
@@ -55,7 +54,7 @@ class StdTx(JsonSerializable):
             # `decode()` to convert the base64 bytes array to its str repr
             signature=base64.b64encode(signature).decode(),
             pub_key_value=base64.b64encode(
-                bytes.fromhex(account.public_key),
+                bytes.fromhex(account.public_key)
             ).decode(),
         )
         self.signatures.append(stdsignmsg)

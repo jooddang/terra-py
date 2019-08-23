@@ -21,13 +21,8 @@ def sha256_and_sign(
 
     Uses ecdsa curves, SECP256k1 by default.
     """
-    sk = SigningKey.from_string(
-        bytes.fromhex(private_key),
-        curve=curve,
-    )
+    sk = SigningKey.from_string(bytes.fromhex(private_key), curve=curve)
     sigencode = sigencode_string_canonize if canonize else sigencode_string
     return sk.sign_deterministic(
-        payload.encode(),
-        hashfunc=hashlib.sha256,
-        sigencode=sigencode,
+        payload.encode(), hashfunc=hashlib.sha256, sigencode=sigencode
     )

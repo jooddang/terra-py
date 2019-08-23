@@ -56,6 +56,11 @@ Run tests
 poetry run coverage run --source terra -m pytest -v
 ```
 
+Format Code
+```bash
+poetry run black .
+```
+
 Linting and code style
 
 ```bash
