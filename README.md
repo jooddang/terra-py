@@ -50,12 +50,6 @@ Install dependencies
 poetry install
 ```
 
-Run tests
-
-```bash
-poetry run coverage run --source terra -m pytest -v
-```
-
 Format Code
 ```bash
 poetry run black .
@@ -65,4 +59,15 @@ Linting and code style
 
 ```bash
 poetry run flake8 .
+```
+
+Static type checking
+```bash
+poetry run mypy --ignore-missing-imports .
+```
+
+Run tests
+
+```bash
+poetry run coverage run --source terra -m pytest -v
 ```
