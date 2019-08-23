@@ -12,7 +12,13 @@ class ReturnType():
     SYNC = 'sync'
 
     def __init__(self) -> None:
-        """Return types enum."""
+        """Return types enum.
+
+        Types are:
+        - Block : inclusion in block
+        - Async : right away
+        - Sync  : after checkTx has passed
+        """
         pass
 
 
