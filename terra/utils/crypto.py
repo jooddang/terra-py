@@ -26,3 +26,8 @@ def sha256_and_sign(
     return sk.sign_deterministic(
         payload.encode(), hashfunc=hashlib.sha256, sigencode=sigencode
     )
+
+
+def sha256(payload: str) -> bytes:
+    """Hash a payload with sha256."""
+    return hashlib.sha256(payload.encode()).digest()
