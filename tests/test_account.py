@@ -25,3 +25,9 @@ def test_account():
     assert a.private_key == ACCOUNT["private_key"]
     assert a.public_key == ACCOUNT["public_key"]
     assert a.seed == ACCOUNT["seed"]
+
+
+def test_account_generate():
+    a = Account.generate()
+    assert len(a.mnemonic.split()) == 24
+    assert a.mnemonic != Account.generate().mnemonic

@@ -35,6 +35,24 @@ class Account:
         self.account_number = account_number
         self.chain_id = chain_id
 
+    @classmethod
+    def generate(
+        cls,
+        account: int = 0,
+        index: int = 0,
+        sequence: str = "0",
+        account_number: str = "0",
+        chain_id: str = "",
+    ) -> "Account":  # see PEP484 and 563 (type hint yet undefined names)
+        return cls(
+            mnemonic=Mnemonic("english").generate(256),
+            account=account,
+            index=index,
+            sequence=sequence,
+            account_number=account_number,
+            chain_id=chain_id,
+        )
+
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
         return bip32utils.BIP32Key.fromEntropy(bytes.fromhex(seed))
