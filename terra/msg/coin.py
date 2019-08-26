@@ -1,4 +1,4 @@
-from terra.utils import JsonSerializable
+from terra.utils.jsonserializable import JsonSerializable
 
 
 class Coin(JsonSerializable):

@@ -1,6 +1,6 @@
 from hashlib import sha256
 
-from terra.utils import JsonSerializable
+from terra.utils.jsonserializable import JsonSerializable
 
 
 class MsgPricePrevote(JsonSerializable):

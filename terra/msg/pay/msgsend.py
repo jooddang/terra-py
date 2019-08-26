@@ -1,7 +1,7 @@
 from typing import List
 
-from terra.msg import Coin
-from terra.utils import JsonSerializable
+from terra.msg.coin import Coin
+from terra.utils.jsonserializable import JsonSerializable
 
 
 class MsgSend(JsonSerializable):
