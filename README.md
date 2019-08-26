@@ -18,6 +18,8 @@ import os
 from terra import Account, msg
 
 acc = Account(os.getenv('MNEMONIC'))
+# or generate a new one
+# acc = Account.generate()
 
 delegate = msg.staking.MsgDelegate(
     delegator_address=acc.account_address,
@@ -27,7 +29,7 @@ delegate = msg.staking.MsgDelegate(
 
 tx = msg.Tx(
     fee=msg.Fee('10000', [msg.Coin('2000', 'uluna')]),
-    memo='delegating my LUNA',
+    memo='Delegating my LUNA tokens',
     msg=[delegate],
 )
 
