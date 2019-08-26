@@ -349,7 +349,10 @@ description = "Backport of pathlib-compatible object wrapper for zip files"
 name = "zipp"
 optional = false
 python-versions = ">=2.7"
-version = "0.5.2"
+version = "0.6.0"
+
+[package.dependencies]
+more-itertools = "*"
 
 [metadata]
 content-hash = "415eb2d7dc7c5a47732358ebfe5971891e9492a0a98dc200bdb56bf8fac950a5"
@@ -392,4 +395,4 @@ typed-ast = ["18511a0b3e7922276346bcb47e2ef9f38fb90fd31cb9223eed42c85d1312344e",
 typing = ["91dfe6f3f706ee8cc32d38edbbf304e9b7583fb37108fef38229617f8b3eba23", "c8cabb5ab8945cd2f54917be357d134db9cc1eb039e59d1606dc1e60cb1d9d36", "f38d83c5a7a7086543a0f649564d661859c5146a85775ab90c0d2f93ffaa9714"]
 typing-extensions = ["2ed632b30bb54fc3941c382decfd0ee4148f5c591651c9272473fea2c6397d95", "b1edbbf0652660e32ae780ac9433f4231e7339c7f9a8057d0f042fcbcea49b87", "d8179012ec2c620d3791ca6fe2bf7979d979acdbef1fca0bc56b37411db682ed"]
 urllib3 = ["b246607a25ac80bedac05c6f282e3cdaf3afb65420fd024ac94435cabe6e18d1", "dbe59173209418ae49d485b87d1681aefa36252ee85884c31346debd19463232"]
-zipp = ["4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a", "8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"]
+zipp = ["3718b1cbcd963c7d4c5511a8240812904164b7f381b647143a89d3b98f9bcd8e", "f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335"]
