@@ -2,7 +2,7 @@ version: 2
 
 jobs:
 
-  build-and-test:
+  lint-and-test:
     docker:
       - image: circleci/python:3.6.8
     steps:
@@ -32,7 +32,7 @@ jobs:
             poetry run coverage run --source terra -m pytest -v
             poetry run codecov --token=${CODECOV_TOKEN}
 
-  deployment:
+  deploy:
     docker:
         - image: circleci/python:3.6.8
     steps:
@@ -45,23 +45,12 @@ jobs:
 workflows:
   version: 2
 
-  build-and-test-workflow:
+  lint-test-deploy-workflow:
     jobs:
-      - build-and-test
-  
-  deployment-workflow:
-    jobs:
-
-      - build-and-test:
-          filters:
-            tags:
-              only: /v[0-9]+(\.[0-9]+)*/
-            branches:
-              ignore: /.*/
-
+      - lint-and-test
       - deployment:
           requires:
-            - build-and-test
+            - lint-and-test
           filters:
               tags:
                 only: /v[0-9]+(\.[0-9]+)*/
