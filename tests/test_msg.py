@@ -3,7 +3,15 @@ import json
 from terra import Account, msg
 from terra.msg.tx import ReturnType
 
+ADDRESS = "terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv"
 FEE = {"gas": "500", "amount": [{"denom": "uluna", "amount": "1000"}]}
+OUT = {
+    "address": ADDRESS,
+    "coins": [
+        {"denom": "ukrw", "amount": "40"},
+        {"denom": "uluna", "amount": "1000"},
+    ],
+}
 
 
 def test_coin():
@@ -19,6 +27,17 @@ def test_fee():
     assert fee.to_json() == json.dumps(FEE, separators=(",", ":"))
 
 
+def test_inout():
+    out = msg.InOut(
+        address=ADDRESS,
+        coins=[
+            msg.Coin(amount="1000", denom="uluna"),
+            msg.Coin(amount="40", denom="ukrw"),
+        ],
+    )
+    assert out.to_json() == json.dumps(OUT, separators=(",", ":"))
+
+
 def test_tx():
     acc = Account(
         "bread genuine element reopen cliff power mean quiz mutual six "
@@ -31,7 +50,7 @@ def test_tx():
     send = msg.pay.MsgSend(
         amount=[msg.Coin(amount="1000000", denom="uluna")],
         from_address=acc.account_address,
-        to_address="terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv",
+        to_address=ADDRESS,
     )
     stdtx = msg.auth.StdTx(
         fee=msg.Fee("200000", [msg.Coin("1000", "uluna")]),
