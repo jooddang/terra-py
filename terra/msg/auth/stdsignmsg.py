@@ -1,6 +1,6 @@
 from typing import Optional
 
-from terra.utils import JsonSerializable
+from terra.utils.jsonserializable import JsonSerializable
 
 
 class StdSignMsg(JsonSerializable):

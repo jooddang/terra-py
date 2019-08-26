@@ -1,9 +1,9 @@
 from typing import List
 
-from terra import Account
-from terra.msg import Fee
-from terra.utils import JsonSerializable
-from terra.msg.auth import StdTx
+from terra.account import Account
+from terra.msg.fee import Fee
+from terra.utils.jsonserializable import JsonSerializable
+from terra.msg.auth.stdtx import StdTx
 
 
 class ReturnType:

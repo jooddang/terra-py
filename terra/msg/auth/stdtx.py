@@ -1,10 +1,11 @@
 from typing import List
 import base64
 
-from terra import Account
-from terra.msg import Fee
-from terra.msg.auth import StdSignMsg
-from terra.utils import crypto, JsonSerializable
+from terra.account import Account
+from terra.msg.auth.stdsignmsg import StdSignMsg
+from terra.msg.fee import Fee
+from terra.utils import crypto
+from terra.utils.jsonserializable import JsonSerializable
 
 
 class StdTx(JsonSerializable):
