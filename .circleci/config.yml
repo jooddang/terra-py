@@ -48,7 +48,7 @@ workflows:
   lint-test-deploy-workflow:
     jobs:
       - lint-and-test
-      - deployment:
+      - deploy:
           requires:
             - lint-and-test
           filters:
