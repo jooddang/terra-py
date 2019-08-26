@@ -35,12 +35,12 @@ jobs:
   deployment:
     docker:
         - image: circleci/python:3.6.8
-      steps:
-        - checkout
-        - run:
-            name: Publish to PYPI
-            command: |
-              poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+    steps:
+      - checkout
+      - run:
+          name: Publish to PYPI
+          command: |
+            poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
 workflows:
   version: 2
