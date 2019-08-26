@@ -8,7 +8,9 @@ Python library for Terra Core
 
 ## Installation
 
-todo
+```
+pip3 install terra-core
+```
 
 ## Usage
 
