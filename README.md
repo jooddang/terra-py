@@ -91,7 +91,7 @@ Tx(
     memo: str = "",
     mode: str = terra.msg.ReturnType.BLOCK,
     msg: List[terra.utils.JsonSerializable] = [],
-    signatures: List[terra.utils.JsonSerializable] = [],
+    signatures: List[terra.msg.auth.StdSignMessage] = [],
 )
 Tx().sign_with(
     account: terra.Account,
@@ -111,7 +111,7 @@ StdTx(
     fee: terra.msg.Fee,
     memo: str = "",
     msg: List[terra.utils.JsonSerializable] = [],  # all terra.msg classes inherit from JsonSerializable
-    signatures: List[terra.utils.JsonSerializable] = [],
+    signatures: List[terra.msg.auth.StdSignMessage] = [],
 )
 StdTx().sign_with(
     account: terra.Account,

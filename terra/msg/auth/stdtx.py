@@ -14,7 +14,7 @@ class StdTx(JsonSerializable):
         fee: Fee,
         memo: str = "",
         msg: List[JsonSerializable] = [],
-        signatures: List[JsonSerializable] = [],
+        signatures: List[StdSignMsg] = [],
     ) -> None:
         """Values of a StdTx message."""
         self.fee = fee

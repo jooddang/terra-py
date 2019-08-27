@@ -3,6 +3,7 @@ from typing import List
 from terra.account import Account
 from terra.msg.fee import Fee
 from terra.utils.jsonserializable import JsonSerializable
+from terra.msg.auth.stdsignmsg import StdSignMsg
 from terra.msg.auth.stdtx import StdTx
 
 
@@ -29,7 +30,7 @@ class Tx(JsonSerializable):
         memo: str = "",
         mode: str = ReturnType.BLOCK,
         msg: List[JsonSerializable] = [],
-        signatures: List[JsonSerializable] = [],
+        signatures: List[StdSignMsg] = [],
     ) -> None:
         """Abstracted transaction class.
 
