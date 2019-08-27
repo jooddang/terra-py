@@ -38,6 +38,7 @@ codecov = "^2.0"
 black = {version = "^18.3-alpha.0", allows-prereleases = true}
 flake8-black = "^0.1.0"
 mypy = "^0.720.0"
+githubrelease = "^1.5"
 [tool.black]
 line-length = 79
 [build-system]
