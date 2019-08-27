@@ -12,7 +12,7 @@ class StdTx(JsonSerializable):
     def __init__(
         self,
         fee: Fee,
-        memo: str,
+        memo: str = "",
         msg: List[JsonSerializable] = [],
         signatures: List[JsonSerializable] = [],
     ) -> None:
