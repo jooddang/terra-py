@@ -2,9 +2,9 @@ from typing import List
 
 from terra.account import Account
 from terra.msg.fee import Fee
-from terra.utils.jsonserializable import JsonSerializable
 from terra.msg.auth.stdsignmsg import StdSignMsg
 from terra.msg.auth.stdtx import StdTx
+from terra.utils.jsonserializable import JsonSerializable
 
 
 class ReturnType:
