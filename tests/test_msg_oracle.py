@@ -41,10 +41,10 @@ def test_msgpriceprevotevalue():
 
 
 def test_msgpriceprevote():
-    msgsend = msg.oracle.MsgPricePrevote(
+    msgpriceprevote = msg.oracle.MsgPricePrevote(
         price=PRICE, salt=SALT, denom=DENOM, feeder=FEEDER, validator=VALIDATOR
     )
-    assert msgsend.to_json() == json.dumps(
+    assert msgpriceprevote.to_json() == json.dumps(
         MSG_PRICE_PREVOTE, separators=(",", ":")
     )
 
@@ -59,9 +59,9 @@ def test_msgpriceVotevalue():
 
 
 def test_msgpriceVote():
-    msgsend = msg.oracle.MsgPriceVote(
+    msgpricevote = msg.oracle.MsgPriceVote(
         price=PRICE, salt=SALT, denom=DENOM, feeder=FEEDER, validator=VALIDATOR
     )
-    assert msgsend.to_json() == json.dumps(
+    assert msgpricevote.to_json() == json.dumps(
         MSG_PRICE_VOTE, separators=(",", ":")
     )
