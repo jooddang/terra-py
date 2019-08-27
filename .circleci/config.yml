@@ -32,7 +32,7 @@ jobs:
             poetry run coverage run --source terra -m pytest -v
             poetry run codecov --token=${CODECOV_TOKEN}
 
-  github-release:
+  publish:
     docker:
         - image: circleci/python:3.6.8
     steps:
@@ -49,35 +49,20 @@ jobs:
           name: Publish to Github
           command: |
             poetry run githubrelease release ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME} create ${CIRCLE_TAG} --publish "dist/*"
-
-  pypi-release:
-    docker:
-        - image: circleci/python:3.6.8
-    steps:
-      - checkout
       - run:
           name: Publish to PyPI
           command: |
-            poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+            poetry publish --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
 workflows:
   version: 2
 
-  lint-test-release-workflow:
+  lint-test-publish-workflow:
     jobs:
       - lint-and-test
-      - github-release:
+      - publish:
           requires:
             - lint-and-test
-          filters:
-              tags:
-                only: /v[0-9]+(\.[0-9]+)*/
-              branches:
-                ignore: /.*/
-      - pypi-release:
-          requires:
-            - lint-and-test
-            - github-release  # cannot overide releases on pypi so have to make sure everything is ok
           filters:
               tags:
                 only: /v[0-9]+(\.[0-9]+)*/
