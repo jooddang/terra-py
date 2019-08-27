@@ -24,7 +24,7 @@ def test_msgdelegatevalue():
 
 
 def test_msgdelegate():
-    msgsend = msg.market.MsgSwap(
+    msgdelegate = msg.market.MsgSwap(
         trader=TRADER, offer_coin=COIN, ask_denom=ASK_DENOM
     )
-    assert msgsend.to_json() == json.dumps(MSG_SWAP, separators=(",", ":"))
+    assert msgdelegate.to_json() == json.dumps(MSG_SWAP, separators=(",", ":"))
