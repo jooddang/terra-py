@@ -14,6 +14,8 @@ pip3 install terra-core
 
 ## Usage
 
+### Example
+
 ```python
 import os
 
@@ -38,6 +40,190 @@ tx = msg.Tx(
 tx.sign_with(acc)
 
 tx.to_json()
+```
+
+### Module `terra`
+
+```python
+Account(
+    mnemonic: str,
+    account: int = 0,
+    index: int = 0,
+    sequence: str = "0",
+    account_number: str = "0",
+    chain_id: str = "",
+)
+
+Account.generate(
+    account: int = 0,
+    index: int = 0,
+    sequence: str = "0",
+    account_number: str = "0",
+    chain_id: str = "",
+)  # return Account
+```
+
+### Module `terra.msg`
+
+```python
+Coin(
+    amount: str,
+    denom: str,
+)
+
+Fee(
+    gas: str,
+    amount: List[terra.msg.Coin],
+)
+
+InOut(
+    address: str,
+    coins: List[terra.msg.Coin],
+)
+
+ReturnType()
+ReturnType.BLOCK
+ReturnType.ASYNC
+ReturnType.SYNC
+
+Tx(
+    fee: terra.msg.Fee,
+    memo: str = "",
+    mode: str = terra.msg.ReturnType.BLOCK,
+    msg: List[terra.utils.JsonSerializable] = [],
+    signatures: List[terra.utils.JsonSerializable] = [],
+)
+Tx().sign_with(
+    account: terra.Account,
+)
+```
+
+### Module `terra.msg.auth`
+
+```python
+StdSignMsg(
+    signature: str,
+    pub_key_value: str,
+    pub_key_type: str = "tendermint/PubKeySecp256k1",
+)
+
+StdTx(
+    fee: terra.msg.Fee,
+    memo: str = "",
+    msg: List[terra.utils.JsonSerializable] = [],  # all terra.msg classes inherit from JsonSerializable
+    signatures: List[terra.utils.JsonSerializable] = [],
+)
+StdTx().sign_with(
+    account: terra.Account,
+)
+```
+
+### Module `terra.msg.distribution`
+
+```python
+MsgSetWithdrawAddress(
+    delegator_address: str,
+    withdraw_address: str,
+)
+
+MsgWithdrawDelegatorReward(
+    delegator_address: str,
+    validator_address: str,
+)
+```
+
+### Module `terra.msg.market`
+
+```python
+MsgSwap(
+    trader: str,
+    offer_coin: terra.msg.Coin,
+    ask_denom: str,
+)
+```
+
+### Module `terra.msg.oracle`
+
+```python
+MsgPricePrevote(
+    price: str,
+    salt: str,
+    denom: str,
+    feeder: str,
+    validator: str
+)
+
+MsgPriceVote(
+    price: str,
+    salt: str,
+    denom: str,
+    feeder: str,
+    validator: str,
+)
+```
+
+### Module `terra.msg.pay`
+
+```python
+MsgMultiSend(
+    inputs: List[terra.msg.InOut],
+    outputs: List[terra.msg.InOut],
+)
+
+MsgSend(
+    amount: List[terra.msg.Coin],
+    from_address: str,
+    to_address: str
+)
+```
+
+### Module `terra.msg.staking`
+
+```python
+MsgBeginRedelegate(
+    delegator_address: str,
+    validator_src_address: str,
+    validator_dst_address: str,
+    amount: terra.msg.Coin,
+)
+
+MsgDelegate(
+    delegator_address: str,
+    validator_address: str,
+    amount: terra.msg.Coin,
+)
+
+MsgUndelegate(
+    delegator_address: str,
+    validator_address: str,
+    amount: terra.msg.Coin,
+)
+```
+
+### Module `terra.utils`
+
+```python
+JsonSerializable()
+JsonSerializable().to_json(
+    sort: bool = False,
+)  # return str
+```
+
+### Module `terra.utils.crypto`
+
+```python
+generate_salt()  # return str
+
+sha256_and_sign(
+    payload: str,
+    private_key: str,
+    curve: ecdsa.curves.Curve = ecdsa.SECP256k1,
+    canonize: bool = True,
+)  # return bytes
+
+sha256(
+    payload: str,
+)  # return bytes
 ```
 
 ## Develop
