@@ -26,7 +26,7 @@ class Tx(JsonSerializable):
     def __init__(
         self,
         fee: Fee,
-        memo: str,
+        memo: str = "",
         mode: str = ReturnType.BLOCK,
         msg: List[JsonSerializable] = [],
         signatures: List[JsonSerializable] = [],
