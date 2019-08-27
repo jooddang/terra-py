@@ -1,4 +1,3 @@
-from typing import Optional
 import hashlib
 import uuid
 
@@ -14,8 +13,8 @@ def generate_salt() -> str:
 def sha256_and_sign(
     payload: str,
     private_key: str,
-    curve: Optional[curves.Curve] = SECP256k1,
-    canonize: Optional[bool] = True,
+    curve: curves.Curve = SECP256k1,
+    canonize: bool = True,
 ) -> bytes:
     """Sign a payload.
 
