@@ -17,16 +17,16 @@ pip3 install terra-core
 ## Usage
 
 - [Example](#example)
-- [Module `terra`](#module-terra)
-    - [`msg`](#module-terramsg)
-        - [`auth`](#module-terramsgauth)
-        - [`distribution`](#module-terramsgdistribution)
-        - [`market`](#module-terramsgmarket)
-        - [`oracle`](#module-terramsgoracle)
-        - [`pay`](#module-terramsgpay)
-        - [`staking`](#module-terramsgstaking)
-    - [`utils`](#module-terrautils)
-        - [`crypto`](#module-terrautilscrypto)
+- [Module terra](#module-terra)
+    - [msg](#module-terramsg)
+        - [auth](#module-terramsgauth)
+        - [distribution](#module-terramsgdistribution)
+        - [market](#module-terramsgmarket)
+        - [oracle](#module-terramsgoracle)
+        - [pay](#module-terramsgpay)
+        - [staking](#module-terramsgstaking)
+    - [utils](#module-terrautils)
+        - [crypto](#module-terrautilscrypto)
 
 ### Example
 
