@@ -58,6 +58,7 @@ tx.to_json()
 
 ### Module `terra`
 
+Account:
 ```python
 Account(
     mnemonic: str,
@@ -115,7 +116,7 @@ InOut().to_json(
 )  # return str
 ```
 
-ReturnType
+ReturnType:
 ```python
 ReturnType()
 ReturnType.BLOCK
@@ -123,7 +124,7 @@ ReturnType.ASYNC
 ReturnType.SYNC
 ```
 
-Tx
+Tx:
 ```python
 Tx(
     fee: terra.msg.Fee,
