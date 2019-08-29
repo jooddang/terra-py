@@ -79,6 +79,7 @@ Account.generate(
 
 ### Module `terra.msg`
 
+Coin:
 ```python
 Coin(
     amount: str,
@@ -89,6 +90,8 @@ Coin().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+Fee:
 ```python
 Fee(
     gas: str,
@@ -99,6 +102,8 @@ Fee().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+InOut:
 ```python
 InOut(
     address: str,
@@ -109,12 +114,16 @@ InOut().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+ReturnType
 ```python
 ReturnType()
 ReturnType.BLOCK
 ReturnType.ASYNC
 ReturnType.SYNC
 ```
+
+Tx
 ```python
 Tx(
     fee: terra.msg.Fee,
@@ -135,6 +144,7 @@ Tx().to_json(
 
 ### Module `terra.msg.auth`
 
+StdSignMsg:
 ```python
 StdSignMsg(
     signature: str,
@@ -146,6 +156,8 @@ StdSignMsg().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+StdTx:
 ```python
 StdTx(
     fee: terra.msg.Fee,
@@ -165,6 +177,7 @@ StdTx().to_json(
 
 ### Module `terra.msg.distribution`
 
+MsgSetWithdrawAddress:
 ```python
 MsgSetWithdrawAddress(
     delegator_address: str,
@@ -175,6 +188,8 @@ MsgSetWithdrawAddress().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+MsgWithdrawDelegatorReward:
 ```python
 MsgWithdrawDelegatorReward(
     delegator_address: str,
@@ -188,6 +203,7 @@ MsgWithdrawDelegatorReward().to_json(
 
 ### Module `terra.msg.market`
 
+MsgSwap:
 ```python
 MsgSwap(
     trader: str,
@@ -202,6 +218,7 @@ MsgSwap().to_json(
 
 ### Module `terra.msg.oracle`
 
+MsgPricePrevote:
 ```python
 MsgPricePrevote(
     price: str,
@@ -215,6 +232,8 @@ MsgPricePrevote().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+MsgPriceVote:
 ```python
 MsgPriceVote(
     price: str,
@@ -231,6 +250,7 @@ MsgPriceVote().to_json(
 
 ### Module `terra.msg.pay`
 
+MsgMultiSend:
 ```python
 MsgMultiSend(
     inputs: List[terra.msg.InOut],
@@ -241,6 +261,8 @@ MsgMultiSend().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+MsgSend:
 ```python
 MsgSend(
     amount: List[terra.msg.Coin],
@@ -255,6 +277,7 @@ MsgSend().to_json(
 
 ### Module `terra.msg.staking`
 
+MsgBeginRedelegate:
 ```python
 MsgBeginRedelegate(
     delegator_address: str,
@@ -267,6 +290,8 @@ MsgBeginRedelegate().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+MsgDelegate:
 ```python
 MsgDelegate(
     delegator_address: str,
@@ -278,6 +303,8 @@ MsgDelegate().to_json(
     sort: bool = False,
 )  # return str
 ```
+
+MsgUndelegate:
 ```python
 MsgUndelegate(
     delegator_address: str,
@@ -292,6 +319,7 @@ MsgUndelegate().to_json(
 
 ### Module `terra.utils`
 
+JsonSerializable:
 ```python
 JsonSerializable()
 
@@ -302,9 +330,12 @@ JsonSerializable().to_json(
 
 ### Module `terra.utils.crypto`
 
+generate_salt:
 ```python
 generate_salt()  # return str
 ```
+
+sha256_and_sign:
 ```python
 sha256_and_sign(
     payload: str,
@@ -313,6 +344,8 @@ sha256_and_sign(
     canonize: bool = True,
 )  # return bytes
 ```
+
+sha256:
 ```python
 sha256(
     payload: str,
