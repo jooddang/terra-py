@@ -152,6 +152,19 @@ flake8 = ">=3.0.0"
 
 [[package]]
 category = "dev"
+description = "githubrelease is a CLI to easily manage GitHub releases, assets and references"
+name = "githubrelease"
+optional = false
+python-versions = "*"
+version = "1.5.8"
+
+[package.dependencies]
+click = "*"
+linkheader = "*"
+requests = "*"
+
+[[package]]
+category = "dev"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
 optional = false
@@ -168,6 +181,14 @@ version = "0.19"
 
 [package.dependencies]
 zipp = ">=0.5"
+
+[[package]]
+category = "dev"
+description = "Parse and format link headers according to RFC 5988 \"Web Linking\""
+name = "linkheader"
+optional = false
+python-versions = "*"
+version = "0.4.3"
 
 [[package]]
 category = "dev"
@@ -355,7 +376,7 @@ version = "0.6.0"
 more-itertools = "*"
 
 [metadata]
-content-hash = "415eb2d7dc7c5a47732358ebfe5971891e9492a0a98dc200bdb56bf8fac950a5"
+content-hash = "8afe6793c131799b47ad9fbe8372ad39db2bc8d83fe46f8dc7266b659d59f4c7"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -375,8 +396,10 @@ ecdsa = ["20c17e527e75acad8f402290e158a6ac178b91b881f941fc6ea305bfdfb9657c", "5c
 entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19", "c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"]
 flake8 = ["19241c1cbc971b9962473e4438a2ca19749a7dd002dd1a946eaba171b4114548", "8e9dfa3cecb2400b3738a42c54c3043e821682b9c840b0448c0503f781130696"]
 flake8-black = ["6b5fe2a609fa750170da8d5b1ed7c11029bceaff025660be7f19307ec6fa0c35"]
+githubrelease = ["38d4e571b97953aa5652024ff9d913e34a3c9c2d3c94ffa006a646d55d1c784a", "e146dc03cc9d17bab87d8c9bd8eabf7503b8c1c00a808f21fd22dcfae2d63095"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
 importlib-metadata = ["23d3d873e008a513952355379d93cbcab874c58f4f034ff657c7a87422fa64e8", "80d2de76188eabfbfcf27e6a37342c2827801e59c4cc14b0371c56fed43820e3"]
+linkheader = ["7fbbc35c0ba3fbbc530571db7e1c886e7db3d718b29b345848ac9686f21b50c3"]
 mccabe = ["ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42", "dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"]
 mnemonic = ["02a7306a792370f4a0c106c2cf1ce5a0c84b9dbd7e71c6792fdb9ad88a727f1d"]
 more-itertools = ["409cd48d4db7052af495b09dec721011634af3753ae1ef92d2b32f73a745f832", "92b8c4b06dac4f0611c0729b2f2ede52b2e1bac1ab48f089c7ddc12e26bb60c4"]

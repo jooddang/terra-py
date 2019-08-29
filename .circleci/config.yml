@@ -32,23 +32,35 @@ jobs:
             poetry run coverage run --source terra -m pytest -v
             poetry run codecov --token=${CODECOV_TOKEN}
 
-  deploy:
+  publish:
     docker:
         - image: circleci/python:3.6.8
     steps:
       - checkout
       - run:
-          name: Publish to PYPI
+          name: Install Dependencies
           command: |
-            poetry publish --build --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+            poetry install
+      - run:
+          name: Build
+          command: |
+            poetry build
+      - run:
+          name: Publish to Github
+          command: |
+            poetry run githubrelease release ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME} create ${CIRCLE_TAG} --publish "dist/*"
+      - run:
+          name: Publish to PyPI
+          command: |
+            poetry publish --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
 workflows:
   version: 2
 
-  lint-test-deploy-workflow:
+  lint-test-publish-workflow:
     jobs:
       - lint-and-test
-      - deploy:
+      - publish:
           requires:
             - lint-and-test
           filters:
