@@ -25,10 +25,10 @@ class Account:
         self.private_key = child.PrivateKey().hex()
         self.public_key = child.PublicKey().hex()
         self.address = self._get_address(self.public_key)
-        self.account_address = self._get_segwit(
+        self.account_address = self._get_bech(
             self.ADDR_PREFIX["account"], self.address
         )
-        self.operator_address = self._get_segwit(
+        self.operator_address = self._get_bech(
             self.ADDR_PREFIX["operator"], self.address
         )
         self.sequence = sequence
@@ -85,14 +85,14 @@ class Account:
         rip.update(sha.digest())
         return rip.digest().hex()
 
-    def _get_segwit(self, prefix: str, payload: str) -> str:
-        """Return a bech32 Segwit address.
+    def _get_bech(self, prefix: str, payload: str) -> str:
+        """Return a bech32 address.
 
         Computed as bech32 string from the account prefix
         and the account address.
 
         Note: The `witver` should not be included.
-              This is why `bech32_encode` is used over `encode`
+              This is why `bech32.bech32_encode` is used over `bech32.encode`
               which includes the `witver` by default
         """
         return bech32.bech32_encode(
