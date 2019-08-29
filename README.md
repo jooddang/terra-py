@@ -6,6 +6,8 @@
 
 Python library for Terra Core
 
+**NOTE:** This is an early version and interface changes could occure until `v1.0.0`.
+
 ## Installation
 
 ```
@@ -13,6 +15,18 @@ pip3 install terra-core
 ```
 
 ## Usage
+
+- [Example](#example)
+- [Module `terra`](#module-terra)
+    - [`msg`](#module-terramsg)
+        - [`auth`](#module-terramsgauth)
+        - [`distribution`](#module-terramsgdistribution)
+        - [`market`](#module-terramsgmarket)
+        - [`oracle`](#module-terramsgoracle)
+        - [`pay`](#module-terramsgpay)
+        - [`staking`](#module-terramsgstaking)
+    - [`utils`](#module-terrautils)
+        - [`crypto`](#module-terrautilscrypto)
 
 ### Example
 
@@ -53,7 +67,6 @@ Account(
     account_number: str = "0",
     chain_id: str = "",
 )
-
 Account.generate(
     account: int = 0,
     index: int = 0,
@@ -70,16 +83,25 @@ Coin(
     amount: str,
     denom: str,
 )
+Coin().to_json(
+    sort: bool = False,
+)  # return str
 
 Fee(
     gas: str,
     amount: List[terra.msg.Coin],
 )
+Fee().to_json(
+    sort: bool = False,
+)  # return str
 
 InOut(
     address: str,
     coins: List[terra.msg.Coin],
 )
+InOut().to_json(
+    sort: bool = False,
+)  # return str
 
 ReturnType()
 ReturnType.BLOCK
@@ -95,7 +117,10 @@ Tx(
 )
 Tx().sign_with(
     account: terra.Account,
-)
+)  # return None
+Tx().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.msg.auth`
@@ -106,6 +131,9 @@ StdSignMsg(
     pub_key_value: str,
     pub_key_type: str = "tendermint/PubKeySecp256k1",
 )
+StdSignMsg().to_json(
+    sort: bool = False,
+)  # return str
 
 StdTx(
     fee: terra.msg.Fee,
@@ -115,7 +143,10 @@ StdTx(
 )
 StdTx().sign_with(
     account: terra.Account,
-)
+)  # return None
+StdTx().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.msg.distribution`
@@ -125,11 +156,17 @@ MsgSetWithdrawAddress(
     delegator_address: str,
     withdraw_address: str,
 )
+MsgSetWithdrawAddress().to_json(
+    sort: bool = False,
+)  # return str
 
 MsgWithdrawDelegatorReward(
     delegator_address: str,
     validator_address: str,
 )
+MsgWithdrawDelegatorReward().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.msg.market`
@@ -140,6 +177,9 @@ MsgSwap(
     offer_coin: terra.msg.Coin,
     ask_denom: str,
 )
+MsgSwap().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.msg.oracle`
@@ -152,6 +192,9 @@ MsgPricePrevote(
     feeder: str,
     validator: str
 )
+MsgPricePrevote().to_json(
+    sort: bool = False,
+)  # return str
 
 MsgPriceVote(
     price: str,
@@ -160,6 +203,9 @@ MsgPriceVote(
     feeder: str,
     validator: str,
 )
+MsgPriceVote().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.msg.pay`
@@ -169,12 +215,18 @@ MsgMultiSend(
     inputs: List[terra.msg.InOut],
     outputs: List[terra.msg.InOut],
 )
+MsgMultiSend().to_json(
+    sort: bool = False,
+)  # return str
 
 MsgSend(
     amount: List[terra.msg.Coin],
     from_address: str,
     to_address: str
 )
+MsgSend().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.msg.staking`
@@ -186,18 +238,27 @@ MsgBeginRedelegate(
     validator_dst_address: str,
     amount: terra.msg.Coin,
 )
+MsgBeginRedelegate().to_json(
+    sort: bool = False,
+)  # return str
 
 MsgDelegate(
     delegator_address: str,
     validator_address: str,
     amount: terra.msg.Coin,
 )
+MsgDelegate().to_json(
+    sort: bool = False,
+)  # return str
 
 MsgUndelegate(
     delegator_address: str,
     validator_address: str,
     amount: terra.msg.Coin,
 )
+MsgUndelegate().to_json(
+    sort: bool = False,
+)  # return str
 ```
 
 ### Module `terra.utils`
