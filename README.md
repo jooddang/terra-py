@@ -67,6 +67,7 @@ Account(
     account_number: str = "0",
     chain_id: str = "",
 )
+
 Account.generate(
     account: int = 0,
     index: int = 0,
@@ -83,31 +84,38 @@ Coin(
     amount: str,
     denom: str,
 )
+
 Coin().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 Fee(
     gas: str,
     amount: List[terra.msg.Coin],
 )
+
 Fee().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 InOut(
     address: str,
     coins: List[terra.msg.Coin],
 )
+
 InOut().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 ReturnType()
 ReturnType.BLOCK
 ReturnType.ASYNC
 ReturnType.SYNC
-
+```
+```python
 Tx(
     fee: terra.msg.Fee,
     memo: str = "",
@@ -115,9 +123,11 @@ Tx(
     msg: List[terra.utils.JsonSerializable] = [],
     signatures: List[terra.msg.auth.StdSignMessage] = [],
 )
+
 Tx().sign_with(
     account: terra.Account,
 )  # return None
+
 Tx().to_json(
     sort: bool = False,
 )  # return str
@@ -131,19 +141,23 @@ StdSignMsg(
     pub_key_value: str,
     pub_key_type: str = "tendermint/PubKeySecp256k1",
 )
+
 StdSignMsg().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 StdTx(
     fee: terra.msg.Fee,
     memo: str = "",
     msg: List[terra.utils.JsonSerializable] = [],  # all terra.msg classes inherit from JsonSerializable
     signatures: List[terra.msg.auth.StdSignMessage] = [],
 )
+
 StdTx().sign_with(
     account: terra.Account,
 )  # return None
+
 StdTx().to_json(
     sort: bool = False,
 )  # return str
@@ -156,14 +170,17 @@ MsgSetWithdrawAddress(
     delegator_address: str,
     withdraw_address: str,
 )
+
 MsgSetWithdrawAddress().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 MsgWithdrawDelegatorReward(
     delegator_address: str,
     validator_address: str,
 )
+
 MsgWithdrawDelegatorReward().to_json(
     sort: bool = False,
 )  # return str
@@ -177,6 +194,7 @@ MsgSwap(
     offer_coin: terra.msg.Coin,
     ask_denom: str,
 )
+
 MsgSwap().to_json(
     sort: bool = False,
 )  # return str
@@ -192,10 +210,12 @@ MsgPricePrevote(
     feeder: str,
     validator: str
 )
+
 MsgPricePrevote().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 MsgPriceVote(
     price: str,
     salt: str,
@@ -203,6 +223,7 @@ MsgPriceVote(
     feeder: str,
     validator: str,
 )
+
 MsgPriceVote().to_json(
     sort: bool = False,
 )  # return str
@@ -215,15 +236,18 @@ MsgMultiSend(
     inputs: List[terra.msg.InOut],
     outputs: List[terra.msg.InOut],
 )
+
 MsgMultiSend().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 MsgSend(
     amount: List[terra.msg.Coin],
     from_address: str,
     to_address: str
 )
+
 MsgSend().to_json(
     sort: bool = False,
 )  # return str
@@ -238,24 +262,29 @@ MsgBeginRedelegate(
     validator_dst_address: str,
     amount: terra.msg.Coin,
 )
+
 MsgBeginRedelegate().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 MsgDelegate(
     delegator_address: str,
     validator_address: str,
     amount: terra.msg.Coin,
 )
+
 MsgDelegate().to_json(
     sort: bool = False,
 )  # return str
-
+```
+```python
 MsgUndelegate(
     delegator_address: str,
     validator_address: str,
     amount: terra.msg.Coin,
 )
+
 MsgUndelegate().to_json(
     sort: bool = False,
 )  # return str
@@ -265,6 +294,7 @@ MsgUndelegate().to_json(
 
 ```python
 JsonSerializable()
+
 JsonSerializable().to_json(
     sort: bool = False,
 )  # return str
@@ -274,14 +304,16 @@ JsonSerializable().to_json(
 
 ```python
 generate_salt()  # return str
-
+```
+```python
 sha256_and_sign(
     payload: str,
     private_key: str,
     curve: ecdsa.curves.Curve = ecdsa.SECP256k1,
     canonize: bool = True,
 )  # return bytes
-
+```
+```python
 sha256(
     payload: str,
 )  # return bytes
