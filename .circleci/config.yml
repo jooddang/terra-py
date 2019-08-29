@@ -1,0 +1,70 @@
+version: 2
+
+jobs:
+
+  lint-and-test:
+    docker:
+      - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - restore_cache:
+          keys: 
+            - deps-{{ checksum "poetry.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+      - save_cache:
+          key: deps-{{ checksum "poetry.lock" }}
+          paths: 
+            - /home/circleci/.cache/pypoetry/virtualenvs
+      - run:
+          name: Lint
+          command: |
+            poetry run flake8 .
+      - run:
+          name: Static type checking
+          command: |
+            poetry run mypy --ignore-missing-imports .
+      - run:
+          name: Test and coverage
+          command: |
+            poetry run coverage run --source terra -m pytest -v
+            poetry run codecov --token=${CODECOV_TOKEN}
+
+  publish:
+    docker:
+        - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+      - run:
+          name: Build
+          command: |
+            poetry build
+      - run:
+          name: Publish to Github
+          command: |
+            poetry run githubrelease release ${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME} create ${CIRCLE_TAG} --publish "dist/*"
+      - run:
+          name: Publish to PyPI
+          command: |
+            poetry publish --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
+
+workflows:
+  version: 2
+
+  lint-test-publish-workflow:
+    jobs:
+      - lint-and-test
+      - publish:
+          requires:
+            - lint-and-test
+          filters:
+              tags:
+                only: /v[0-9]+(\.[0-9]+)*/
+              branches:
+                ignore: /.*/

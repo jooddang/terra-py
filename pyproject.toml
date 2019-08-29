@@ -1,17 +1,50 @@
 [tool.poetry]
-name = "terra-py"
+name = "terra-core"
 version = "0.1.0"
 description = "Python library for Terra Core"
-authors = ["etienne-napoleone <etienne@terra.money>"]
+license = "MIT"
+authors = [
+    "etienne-napoleone <etienne@terra.money>"
+]
+
+readme = "README.md"
+
+homepage = "https://terra.money"
+repository = "https://github.com/terra-project/terra-py"
+documentation = "https://docs.terra.money"
+
+keywords = ["terra", "sdk"]
+
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+]
+
+packages = [
+    { include = "terra" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+bip32utils = "^0.3.0"
+mnemonic = "^0.18.0"
+bech32 = "^1.1"
+ecdsa = "^0.13.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
 flake8 = "^3.7"
 coverage = "^4.5"
-
+codecov = "^2.0"
+black = {version = "^18.3-alpha.0", allows-prereleases = true}
+flake8-black = "^0.1.0"
+mypy = "^0.720.0"
+githubrelease = "^1.5"
+[tool.black]
+line-length = 79
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
