@@ -59,12 +59,15 @@ workflows:
 
   lint-test-publish-workflow:
     jobs:
-      - lint-and-test
+      - lint-and-test:
+          filters:
+            tags:
+              only: /.*/
       - publish:
           requires:
             - lint-and-test
           filters:
-              tags:
-                only: /v[0-9]+(\.[0-9]+)*/
-              branches:
-                ignore: /.*/
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
