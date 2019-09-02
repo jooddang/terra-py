@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Modules - Terra-py</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../css/extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Modules";
+    var mkdocs_page_input_path = "modules.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Terra-py</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../installation/">Installation</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Modules</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#modules">Modules</a></li>
+    
+
+    <li class="toctree-l2"><a href="#terra">terra</a></li>
+    
+
+    <li class="toctree-l2"><a href="#terramsg">terra.msg</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#terramsgauth">terra.msg.auth</a></li>
+        
+            <li><a class="toctree-l3" href="#terramsgdistribution">terra.msg.distribution</a></li>
+        
+            <li><a class="toctree-l3" href="#terramsgmarket">terra.msg.market</a></li>
+        
+            <li><a class="toctree-l3" href="#terramsgoracle">terra.msg.oracle</a></li>
+        
+            <li><a class="toctree-l3" href="#terramsgpay">terra.msg.pay</a></li>
+        
+            <li><a class="toctree-l3" href="#terramsgstaking">terra.msg.staking</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#terrautils">terra.utils</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#terrautilscrypto">terra.utils.crypto</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../contribute/">Contribute</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Terra-py</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Modules</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/terra-project/terra-py/edit/master/docs/modules.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="modules">Modules</h1>
+<p>Documentation of the modules apis.</p>
+<h1 id="terra">terra</h1>
+<p>Account:</p>
+<pre><code class="python">terra.Account(
+    mnemonic: str,
+    account: int = 0,
+    index: int = 0,
+    sequence: str = &quot;0&quot;,
+    account_number: str = &quot;0&quot;,
+    chain_id: str = &quot;&quot;,
+) -&gt; None
+
+terra.Account.generate() -&gt; Account
+</code></pre>
+
+<h1 id="terramsg">terra.msg</h1>
+<p>Coin:</p>
+<pre><code class="python">Coin(
+    amount: str,
+    denom: str,
+) -&gt; None
+
+Coin().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>Fee:</p>
+<pre><code class="python">Fee(
+    gas: str,
+    amount: List[terra.msg.Coin],
+) -&gt; None
+
+Fee().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>InOut:</p>
+<pre><code class="python">InOut(
+    address: str,
+    coins: List[terra.msg.Coin],
+) -&gt; None
+
+InOut().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>ReturnType:</p>
+<pre><code class="python">ReturnType()
+
+ReturnType.BLOCK
+ReturnType.ASYNC
+ReturnType.SYNC
+</code></pre>
+
+<p>Tx:</p>
+<pre><code class="python">Tx(
+    fee: terra.msg.Fee,
+    memo: str = &quot;&quot;,
+    mode: str = terra.msg.ReturnType.BLOCK,
+    msg: List[terra.utils.JsonSerializable] = [],
+    signatures: List[terra.msg.auth.StdSignMessage] = [],
+) -&gt; None
+
+Tx().sign_with(
+    account: terra.Account,
+) -&gt; None
+
+Tx().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terramsgauth">terra.msg.auth</h2>
+<p>StdSignMsg:</p>
+<pre><code class="python">StdSignMsg(
+    signature: str,
+    pub_key_value: str,
+    pub_key_type: str = &quot;tendermint/PubKeySecp256k1&quot;,
+) -&gt; None
+
+StdSignMsg().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>StdTx:</p>
+<pre><code class="python">StdTx(
+    fee: terra.msg.Fee,
+    memo: str = &quot;&quot;,
+    msg: List[terra.utils.JsonSerializable] = [],  # all terra.msg classes inherit from JsonSerializable
+    signatures: List[terra.msg.auth.StdSignMessage] = [],
+) -&gt; None
+
+StdTx().sign_with(
+    account: terra.Account,
+) -&gt; None
+
+StdTx().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terramsgdistribution">terra.msg.distribution</h2>
+<p>MsgSetWithdrawAddress:</p>
+<pre><code class="python">MsgSetWithdrawAddress(
+    delegator_address: str,
+    withdraw_address: str,
+) -&gt; None
+
+MsgSetWithdrawAddress().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>MsgWithdrawDelegatorReward:</p>
+<pre><code class="python">MsgWithdrawDelegatorReward(
+    delegator_address: str,
+    validator_address: str,
+) -&gt; None
+
+MsgWithdrawDelegatorReward().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terramsgmarket">terra.msg.market</h2>
+<p>MsgSwap:</p>
+<pre><code class="python">MsgSwap(
+    trader: str,
+    offer_coin: terra.msg.Coin,
+    ask_denom: str,
+) -&gt; None
+
+MsgSwap().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terramsgoracle">terra.msg.oracle</h2>
+<p>MsgPricePrevote:</p>
+<pre><code class="python">MsgPricePrevote(
+    price: str,
+    salt: str,
+    denom: str,
+    feeder: str,
+    validator: str
+) -&gt; None
+
+MsgPricePrevote().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>MsgPriceVote:</p>
+<pre><code class="python">MsgPriceVote(
+    price: str,
+    salt: str,
+    denom: str,
+    feeder: str,
+    validator: str,
+) -&gt; None
+
+MsgPriceVote().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terramsgpay">terra.msg.pay</h2>
+<p>MsgMultiSend:</p>
+<pre><code class="python">MsgMultiSend(
+    inputs: List[terra.msg.InOut],
+    outputs: List[terra.msg.InOut],
+) -&gt; None
+
+MsgMultiSend().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>MsgSend:</p>
+<pre><code class="python">MsgSend(
+    amount: List[terra.msg.Coin],
+    from_address: str,
+    to_address: str
+) -&gt; None
+
+MsgSend().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terramsgstaking">terra.msg.staking</h2>
+<p>MsgBeginRedelegate:</p>
+<pre><code class="python">MsgBeginRedelegate(
+    delegator_address: str,
+    validator_src_address: str,
+    validator_dst_address: str,
+    amount: terra.msg.Coin,
+) -&gt; None
+
+MsgBeginRedelegate().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>MsgDelegate:</p>
+<pre><code class="python">MsgDelegate(
+    delegator_address: str,
+    validator_address: str,
+    amount: terra.msg.Coin,
+) -&gt; None
+
+MsgDelegate().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<p>MsgUndelegate:</p>
+<pre><code class="python">MsgUndelegate(
+    delegator_address: str,
+    validator_address: str,
+    amount: terra.msg.Coin,
+) -&gt; None
+
+MsgUndelegate().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h1 id="terrautils">terra.utils</h1>
+<p>JsonSerializable:</p>
+<pre><code class="python">JsonSerializable() -&gt; None
+
+JsonSerializable().to_json(
+    sort: bool = False,
+) -&gt; str
+</code></pre>
+
+<h2 id="terrautilscrypto">terra.utils.crypto</h2>
+<p>generate_salt:</p>
+<pre><code class="python">generate_salt() -&gt; str
+</code></pre>
+
+<p>sha256_and_sign:</p>
+<pre><code class="python">sha256_and_sign(
+    payload: str,
+    private_key: str,
+    curve: ecdsa.curves.Curve = ecdsa.SECP256k1,
+    canonize: bool = True,
+) -&gt; bytes
+</code></pre>
+
+<p>sha256:</p>
+<pre><code class="python">sha256(
+    payload: str,
+) -&gt; bytes
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contribute/" class="btn btn-neutral float-right" title="Contribute">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright &copy; 2019 Terraform Labs PTE LTD.</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/terra-project/terra-py/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../contribute/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
