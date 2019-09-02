@@ -64,6 +64,9 @@ jobs:
           name: Install Dependencies
           command: |
             poetry install
+      - add_ssh_keys:
+          fingerprints:
+            - "f9:fa:2f:03:9b:58:80:02:13:3f:84:8e:b3:bd:e5:3f"
       - run:
           name: Publish to GH Pages
           command: |
