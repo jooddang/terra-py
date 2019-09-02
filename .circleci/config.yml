@@ -54,6 +54,21 @@ jobs:
           command: |
             poetry publish --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
+
+  docs:
+    docker:
+        - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+      - run:
+          name: Publish to GH Pages
+          command: |
+            poetry run mkdocs gh-deploy -c
+
 workflows:
   version: 2
 
@@ -63,6 +78,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+            branches:
+              ignore: gh-pages
+      - docs:
+          filters:
+            branches:
+              only: gh-pages
       - publish:
           requires:
             - lint-and-test
