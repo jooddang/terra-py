@@ -2,9 +2,6 @@
 
 Python library for Terra Core
 
-!!! Note
-    ok test
-
 ## Example
 
 ```python
