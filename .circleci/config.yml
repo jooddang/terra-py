@@ -83,7 +83,7 @@ workflows:
       - docs:
           filters:
             branches:
-              only: gh-pages
+              only: develop
       - publish:
           requires:
             - lint-and-test
