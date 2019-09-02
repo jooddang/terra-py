@@ -1,0 +1,10 @@
+site_name: Terra-py
+repo_url: https://github.com/terra-project/terra-py
+nav:
+  - Home: index.md
+  - Modules: modules.md
+theme:
+  name: readthedocs
+copyright: Copyright &copy; 2019 Terraform Labs PTE LTD.
+extra_css:
+    - css/extra.css
