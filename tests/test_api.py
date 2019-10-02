@@ -1,0 +1,40 @@
+import pytest
+
+from httmock import all_requests, HTTMock
+
+from terra import api
+from terra import exceptions
+
+
+@all_requests
+def response_200(url, request):
+    return {"status_code": 200, "content": '{"test": "test"}'}
+
+
+@all_requests
+def response_404(url, request):
+    return {"status_code": 404, "content": ""}
+
+
+def test_client_get_200():
+    with HTTMock(response_200):
+        assert api.client.Client.get("/") == {"test": "test"}
+
+
+def test_client_get_404():
+    with HTTMock(response_404):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.get("/")
+            assert e.match("404")
+
+
+def test_client_post_200():
+    with HTTMock(response_200):
+        assert api.client.Client.post("/") == {"test": "test"}
+
+
+def test_client_post_404():
+    with HTTMock(response_404):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.post("/")
+            assert e.match("404")
