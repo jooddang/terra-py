@@ -1,6 +1,5 @@
-import pytest
-
 from httmock import all_requests, HTTMock
+import pytest
 
 from terra import api
 from terra import exceptions
@@ -16,6 +15,16 @@ def response_404(url, request):
     return {"status_code": 404, "content": ""}
 
 
+@all_requests
+def response_timeout(url, request):
+    pass
+
+
+@all_requests
+def response_not_json(url, request):
+    return {"status_code": 200, "content": "test"}
+
+
 def test_client_get_200():
     with HTTMock(response_200):
         assert api.client.Client.get("/") == {"test": "test"}
@@ -28,6 +37,20 @@ def test_client_get_404():
             assert e.match("404")
 
 
+def test_client_get_timeout():
+    with HTTMock(response_timeout):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.get("/")
+            assert e.match("timed out")
+
+
+def test_client_get_not_json():
+    with HTTMock(response_not_json):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.get("/")
+            assert e.match("json")
+
+
 def test_client_post_200():
     with HTTMock(response_200):
         assert api.client.Client.post("/") == {"test": "test"}
@@ -38,3 +61,17 @@ def test_client_post_404():
         with pytest.raises(exceptions.ApiError) as e:
             api.client.Client.post("/")
             assert e.match("404")
+
+
+def test_client_post_timeout():
+    with HTTMock(response_timeout):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.post("/")
+            assert e.match("timed out")
+
+
+def test_client_post_not_json():
+    with HTTMock(response_not_json):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.post("/")
+            assert e.match("json")
