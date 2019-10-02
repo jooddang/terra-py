@@ -3,7 +3,7 @@ import json
 
 import requests
 
-from terra.api.exceptions import ApiError
+from terra.exceptions import ApiError
 
 
 class Client:
