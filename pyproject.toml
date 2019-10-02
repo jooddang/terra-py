@@ -33,6 +33,7 @@ bip32utils = "^0.3.0"
 mnemonic = "^0.18.0"
 bech32 = "^1.1"
 ecdsa = "^0.13.2"
+requests = "^2.22"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
