@@ -18,7 +18,7 @@ def response_404(url, request):
 
 @all_requests
 def response_timeout(url, request):
-    pass
+    raise requests.exceptions.Timeout
 
 
 @all_requests
