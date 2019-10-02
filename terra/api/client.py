@@ -11,9 +11,15 @@ class Client:
     SESSION = requests.Session()
 
     @staticmethod
-    def get(path: str, params: Optional[Dict[str, str]] = None) -> dict:
+    def get(
+        path: str,
+        params: Optional[Dict[str, str]] = None,
+        timeout: Optional[int] = 5,
+    ) -> dict:
         try:
-            resp = Client.SESSION.get(url=f"{Client.URL}{path}", params=params)
+            resp = Client.SESSION.get(
+                url=f"{Client.URL}{path}", params=params, timeout=timeout
+            )
             resp.raise_for_status()
             return resp.json()
         except requests.exceptions.HTTPError:
@@ -38,10 +44,14 @@ class Client:
         path: str,
         params: Optional[Dict[str, str]] = None,
         data: Optional[Dict[str, str]] = None,
+        timeout: Optional[int] = 5,
     ) -> dict:
         try:
             resp = Client.SESSION.post(
-                url=f"{Client.URL}{path}", params=params, data=data
+                url=f"{Client.URL}{path}",
+                params=params,
+                data=data,
+                timeout=timeout,
             )
             resp.raise_for_status()
             return resp.json()
