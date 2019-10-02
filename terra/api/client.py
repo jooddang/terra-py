@@ -40,7 +40,7 @@ class Client:
         try:
             resp = requests.get(url=f"{Client.URL}{path}", params=params)
             resp.raise_for_status()
-            return resp
+            return resp.json()
         except requests.exceptions.HTTPError:
             raise ApiError(
                 "The endpoint returned an unsuccessful status code."
