@@ -75,3 +75,11 @@ def test_client_post_not_json():
         with pytest.raises(exceptions.ApiError) as e:
             api.client.Client.post("/")
             assert e.match("json")
+
+
+def test_get_tendermint_node_info():
+    assert list(api.tendermint.node_info.get().keys())[0] == "protocol_version"
+
+
+def test_get_oracle_denoms_actives():
+    assert list(api.oracle.denoms.actives.get().keys())[0] == "actives"
