@@ -1,5 +1,6 @@
 from httmock import all_requests, HTTMock
 import pytest
+import requests
 
 from terra import api
 from terra import exceptions
@@ -23,6 +24,16 @@ def response_timeout(url, request):
 @all_requests
 def response_not_json(url, request):
     return {"status_code": 200, "content": "test"}
+
+
+@all_requests
+def response_too_many_redirects(url, request):
+    raise requests.exceptions.TooManyRedirects
+
+
+@all_requests
+def response_generic_exception(url, request):
+    raise requests.exceptions.RequestException
 
 
 def test_client_get_200():
@@ -51,6 +62,20 @@ def test_client_get_not_json():
             assert e.match("json")
 
 
+def test_client_get_too_many_redirects():
+    with HTTMock(response_too_many_redirects):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.get("/")
+            assert e.match("redirections")
+
+
+def test_client_get_generic_exception():
+    with HTTMock(response_generic_exception):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.get("/")
+            assert e.match("The endpoint could not be accessed")
+
+
 def test_client_post_200():
     with HTTMock(response_200):
         assert api.client.Client.post("/") == {"test": "test"}
@@ -75,6 +100,20 @@ def test_client_post_not_json():
         with pytest.raises(exceptions.ApiError) as e:
             api.client.Client.post("/")
             assert e.match("json")
+
+
+def test_client_post_too_many_redirects():
+    with HTTMock(response_too_many_redirects):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.post("/")
+            assert e.match("redirections")
+
+
+def test_client_post_generic_exception():
+    with HTTMock(response_generic_exception):
+        with pytest.raises(exceptions.ApiError) as e:
+            api.client.Client.post("/")
+            assert e.match("The endpoint could not be accessed")
 
 
 def test_get_tendermint_node_info():
