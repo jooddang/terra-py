@@ -46,6 +46,7 @@ mypy = "^0.720.0"
 githubrelease = "^1.5"
 toml = "^0.10.0"
 mkdocs = "^1.0"
+httmock = "^1.3"
 [tool.black]
 line-length = 79
 [build-system]

@@ -164,6 +164,17 @@ linkheader = "*"
 requests = "*"
 
 [[package]]
+category = "dev"
+description = "A mocking library for requests."
+name = "httmock"
+optional = false
+python-versions = "*"
+version = "1.3.0"
+
+[package.dependencies]
+requests = ">=1.0.0"
+
+[[package]]
 category = "main"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
@@ -450,7 +461,7 @@ version = "0.6.0"
 more-itertools = "*"
 
 [metadata]
-content-hash = "bcfa999e01c081fabda733d5216a1ab3f1236efc89d07af704fe1e1c000da759"
+content-hash = "a4bd2b351fe2b3dfff94bbd823d0df701a088570646fa810615eef4cb84e3c6c"
 python-versions = "^3.6"
 
 [metadata.hashes]
@@ -471,6 +482,7 @@ entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19
 flake8 = ["19241c1cbc971b9962473e4438a2ca19749a7dd002dd1a946eaba171b4114548", "8e9dfa3cecb2400b3738a42c54c3043e821682b9c840b0448c0503f781130696"]
 flake8-black = ["6b5fe2a609fa750170da8d5b1ed7c11029bceaff025660be7f19307ec6fa0c35"]
 githubrelease = ["38d4e571b97953aa5652024ff9d913e34a3c9c2d3c94ffa006a646d55d1c784a", "e146dc03cc9d17bab87d8c9bd8eabf7503b8c1c00a808f21fd22dcfae2d63095"]
+httmock = ["e0bbaced224426bcd994a5f1c64ab60e0c923ea615825c53e6c0190b2a7341fe"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
 importlib-metadata = ["23d3d873e008a513952355379d93cbcab874c58f4f034ff657c7a87422fa64e8", "80d2de76188eabfbfcf27e6a37342c2827801e59c4cc14b0371c56fed43820e3"]
 jinja2 = ["065c4f02ebe7f7cf559e49ee5a95fb800a9e4528727aec6f24402a5374c65013", "14dd6caf1527abb21f08f86c784eac40853ba93edb79552aa1e4b8aef1b61c7b"]
