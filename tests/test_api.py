@@ -120,5 +120,9 @@ def test_get_tendermint_node_info():
     assert list(api.tendermint.node_info.get().keys())[0] == "protocol_version"
 
 
+def test_get_tendermint_blocks_latest():
+    assert list(api.tendermint.blocks.latest.get().keys())[0] == "block_meta"
+
+
 def test_get_oracle_denoms_actives():
     assert list(api.oracle.denoms.actives.get().keys())[0] == "actives"
