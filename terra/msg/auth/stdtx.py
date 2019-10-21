@@ -19,8 +19,8 @@ class StdTx(JsonSerializable):
         """Values of a StdTx message."""
         self.fee = fee
         self.memo = memo
-        self.msg = msg
-        self.signatures = signatures
+        self.msg = msg or []
+        self.signatures = signatures or []
 
     def sign_with(self, account: Account) -> None:
         """Helper function to sign the StdTx with a given account.
