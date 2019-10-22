@@ -9,7 +9,7 @@ DENOM = "ukrw"
 PRICE = "1.1"
 FEEDER = "terra1qjsdrnv5u59syrl7yzla9a7qkgwd5g5hk0yfat"
 VALIDATOR = "terravaloper1qjsdrnv5u59syrl7yzla9a7qkgwd5g5hkqg5dc"
-HASH = "4bcebe0fd3985be92e4da5ad288d925b9e60276f0313"
+HASH = "4bcebe0fd3985be92e4d"
 MSG_PRICE_PREVOTE = {
     "type": "oracle/MsgPricePrevote",
     "value": {
