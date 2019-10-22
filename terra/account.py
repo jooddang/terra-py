@@ -4,6 +4,8 @@ from mnemonic import Mnemonic
 import bech32
 import bip32utils
 
+from terra import api
+
 
 class Account:
     ADDR_PREFIX = {"account": "terra", "operator": "terravaloper"}
@@ -13,9 +15,7 @@ class Account:
         mnemonic: str,
         account: int = 0,
         index: int = 0,
-        sequence: str = "0",
-        account_number: str = "0",
-        chain_id: str = "",
+        chain_id: str = "columbus-2",
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
@@ -31,25 +31,26 @@ class Account:
         self.operator_address = self._get_bech(
             self.ADDR_PREFIX["operator"], self.address
         )
-        self.sequence = sequence
-        self.account_number = account_number
         self.chain_id = chain_id
+
+    @property
+    def sequence(self) -> str:
+        account = api.auth.accounts.by_address.get(self.account_address)
+        return account["value"]["sequence"]
+
+    @property
+    def account_number(self) -> str:
+        account = api.auth.accounts.by_address.get(self.account_address)
+        return account["value"]["account_number"]
 
     @classmethod
     def generate(
-        cls,
-        account: int = 0,
-        index: int = 0,
-        sequence: str = "0",
-        account_number: str = "0",
-        chain_id: str = "",
+        cls, account: int = 0, index: int = 0, chain_id: str = "columbus-2"
     ) -> "Account":  # see PEP484 and 563 (type hint yet undefined names)
         return cls(
             mnemonic=Mnemonic("english").generate(256),
             account=account,
             index=index,
-            sequence=sequence,
-            account_number=account_number,
             chain_id=chain_id,
         )
 

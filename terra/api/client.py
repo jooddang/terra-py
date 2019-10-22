@@ -1,5 +1,5 @@
 from typing import Dict, Optional
-import json
+from json.decoder import JSONDecodeError
 
 import requests
 
@@ -20,13 +20,12 @@ class Client:
             resp = Client.SESSION.get(
                 url=f"{Client.URL}{path}", params=params, timeout=timeout
             )
-            resp.raise_for_status()
+            if resp.status_code != 200:
+                raise ApiError(
+                    "The endpoint returned an unsuccessful status code: "
+                    f"{resp.text}"
+                )
             return resp.json()
-        except requests.exceptions.HTTPError:
-            raise ApiError(
-                "The endpoint returned an unsuccessful status code "
-                f"({resp.status_code})."
-            )
         except requests.exceptions.Timeout:
             raise ApiError("The endpoint timed out.")
         except requests.exceptions.TooManyRedirects:
@@ -36,29 +35,29 @@ class Client:
             )
         except requests.exceptions.RequestException as e:
             raise ApiError(f"The endpoint could not be accessed: {e}")
-        except json.decoder.JSONDecodeError:
+        except JSONDecodeError:
             raise ApiError(f"The endpoint response is not json decodable.")
 
     @staticmethod
     def post(
         path: str,
+        json: Optional[Dict[str, str]],
         params: Optional[Dict[str, str]] = None,
-        data: Optional[Dict[str, str]] = None,
-        timeout: Optional[int] = 5,
+        timeout: Optional[int] = 10,
     ) -> dict:
         try:
             resp = Client.SESSION.post(
                 url=f"{Client.URL}{path}",
                 params=params,
-                data=data,
                 timeout=timeout,
+                json=json,
             )
-            resp.raise_for_status()
+            if resp.status_code != 200:
+                raise ApiError(
+                    "The endpoint returned an unsuccessful status code: "
+                    f"{resp.text}"
+                )
             return resp.json()
-        except requests.exceptions.HTTPError:
-            raise ApiError(
-                "The endpoint returned an unsuccessful status code."
-            )
         except requests.exceptions.Timeout:
             raise ApiError("The endpoint timed out.")
         except requests.exceptions.TooManyRedirects:
@@ -68,5 +67,5 @@ class Client:
             )
         except requests.exceptions.RequestException as e:
             raise ApiError(f"The endpoint could not be accessed: {e}")
-        except json.decoder.JSONDecodeError:
+        except JSONDecodeError:
             raise ApiError(f"The endpoint response is not json decodable.")

@@ -42,10 +42,7 @@ def test_tx():
     acc = Account(
         "bread genuine element reopen cliff power mean quiz mutual six "
         "machine planet dry detect edit slim clap firm jelly success na"
-        "rrow orange echo tomorrow",
-        sequence="0",
-        account_number="0",
-        chain_id="soju",
+        "rrow orange echo tomorrow"
     )
     send = msg.pay.MsgSend(
         amount=[msg.Coin(amount="1000000", denom="uluna")],

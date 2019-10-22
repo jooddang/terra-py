@@ -1,6 +1,7 @@
 from typing import List
 
 from terra.account import Account
+from terra.api.tendermint import txs
 from terra.msg.fee import Fee
 from terra.msg.auth.stdsignmsg import StdSignMsg
 from terra.msg.auth.stdtx import StdTx
@@ -45,3 +46,7 @@ class Tx(JsonSerializable):
         Proxy `StdTx().sign_with()`.
         """
         self.tx.sign_with(account)
+
+    def broadcast(self) -> dict:
+        """Helper function to broadcast the tx."""
+        return txs.post(self.to_json())

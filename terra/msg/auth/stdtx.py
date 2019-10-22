@@ -43,7 +43,7 @@ class StdTx(JsonSerializable):
         payload = SignPayload(
             fee=self.fee,
             memo=self.memo,
-            msg=self.msg,
+            msgs=self.msg,
             sequence=account.sequence,
             account_number=account.account_number,
             chain_id=account.chain_id,
@@ -67,7 +67,7 @@ class SignPayload(JsonSerializable):
         self,
         fee: Fee,
         memo: str,
-        msg: List[JsonSerializable],
+        msgs: List[JsonSerializable],
         sequence: str,
         account_number: str,
         chain_id: str,
@@ -75,7 +75,7 @@ class SignPayload(JsonSerializable):
         """StdTx structured as a payload ready to be signed."""
         self.fee = fee
         self.memo = memo
-        self.msg = msg
+        self.msgs = msgs
         self.sequence = sequence
         self.account_number = account_number
         self.chain_id = chain_id
