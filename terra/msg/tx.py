@@ -47,6 +47,6 @@ class Tx(JsonSerializable):
         """
         self.tx.sign_with(account)
 
-    def broadcast(self) -> str:
+    def broadcast(self) -> dict:
         """Helper function to broadcast the tx."""
-        txs.post(self.to_json())
+        return txs.post(self.to_json())
