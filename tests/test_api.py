@@ -126,3 +126,8 @@ def test_get_tendermint_blocks_latest():
 
 def test_get_oracle_denoms_actives():
     assert list(api.oracle.denoms.actives.get().keys())[0] == "actives"
+
+
+def test_get_auth_accounts_by_address():
+    address = "terra1d03dz5n3hj8qfzfjvrza8a9t0hejwnjcdsn5cw"
+    assert list(api.auth.accounts.by_address.get(address).keys())[0] == "type"
