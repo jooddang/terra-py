@@ -26,7 +26,7 @@ class MsgPricePrevote(JsonSerializable):
         https://docs.terra.money/specifications/oracle
         """
         sha_hash = sha256(f"{salt}:{price}:{denom}:{voter}".encode())
-        return sha_hash.hexdigest()[:20]
+        return sha_hash.hexdigest()[:40]
 
 
 class MsgPricePrevoteValue(JsonSerializable):

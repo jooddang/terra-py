@@ -4,4 +4,4 @@ from terra import utils
 from terra.account import Account
 
 __all__ = ["api", "msg", "utils", "Account"]
-__version__ = "0.1.3"
+__version__ = "0.1.4"
