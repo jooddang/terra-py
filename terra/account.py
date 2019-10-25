@@ -32,11 +32,22 @@ class Account:
             self.ADDR_PREFIX["operator"], self.address
         )
         self.chain_id = chain_id
+        self._sequence = self._get_sequence()
 
     @property
     def sequence(self) -> str:
-        account = api.auth.accounts.by_address.get(self.account_address)
-        return account["value"]["sequence"]
+        """Sequence getter."""
+        api_sequence = self._get_sequence()
+        if int(self._sequence) > int(api_sequence):
+            return self._sequence
+        else:
+            self._sequence = api_sequence
+            return api_sequence
+
+    @sequence.setter
+    def sequence(self, sequence: str) -> None:
+        """Sequence setter."""
+        self._sequence = sequence
 
     @property
     def account_number(self) -> str:
@@ -47,12 +58,19 @@ class Account:
     def generate(
         cls, account: int = 0, index: int = 0, chain_id: str = "columbus-2"
     ) -> "Account":  # see PEP484 and 563 (type hint yet undefined names)
+        """Generate a new account from a random mnemonic"""
         return cls(
             mnemonic=Mnemonic("english").generate(256),
             account=account,
             index=index,
             chain_id=chain_id,
         )
+
+    def _get_sequence(self) -> str:
+        """Get sequence from api."""
+        return api.auth.accounts.by_address.get(self.account_address)["value"][
+            "account_number"
+        ]
 
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
