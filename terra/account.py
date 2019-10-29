@@ -69,7 +69,7 @@ class Account:
     def _get_sequence(self) -> str:
         """Get sequence from api."""
         return api.auth.accounts.by_address.get(self.account_address)["value"][
-            "account_number"
+            "sequence"
         ]
 
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
