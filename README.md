@@ -34,7 +34,9 @@ pipenv install terra-core
 ```python
 import os
 
-from terra import Account, msg
+from terra import Account
+from terra import api
+from terra import msg
 
 acc = Account(os.getenv('MNEMONIC'))
 # or generate a new one
@@ -54,7 +56,7 @@ tx = msg.Tx(
 
 tx.sign_with(acc)
 
-tx.to_json()
+res = tx.broadcast()
 ```
 
 Complete api in the [documentation](http://terra-project.github.io/terra-py).
