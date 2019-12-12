@@ -168,8 +168,14 @@
 Account().generate() -&gt; Account
 </code></pre>
 
+<p>Exceptions:</p>
+<pre><code class="python"># Raised when an error occured while communicating with the API
+ApiError()
+</code></pre>
+
 <h1 id="terraapi">terra.api</h1>
-<p>You can change the api endpoint by setting:</p>
+<p>The api module is wrapping some endpoints from <a href="https://swagger.terra.money/">Terra lcd server</a>.</p>
+<p>You can change the api endpoint used by setting:</p>
 <pre><code class="python">terra.api.Client.URL = &quot;https://my.lcd.server&quot;
 </code></pre>
 
