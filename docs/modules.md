@@ -146,6 +146,8 @@ Tx().sign_with(
     account: terra.Account,
 ) -> None
 
+Tx().broadcast() -> dict:
+
 Tx().to_json(
     sort: bool = False,
 ) -> str
