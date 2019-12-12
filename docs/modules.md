@@ -16,9 +16,17 @@ Account(
 Account().generate() -> Account
 ```
 
+Exceptions:
+```python
+# Raised when an error occured while communicating with the API
+ApiError()
+```
+
 # terra.api
 
-You can change the api endpoint by setting:
+The api module is wrapping some endpoints from [Terra lcd server](https://swagger.terra.money/).
+
+You can change the api endpoint used by setting:
 ```python
 terra.api.Client.URL = "https://my.lcd.server"
 ```
