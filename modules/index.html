@@ -70,6 +70,19 @@
     <li class="toctree-l2"><a href="#terra">terra</a></li>
     
 
+    <li class="toctree-l2"><a href="#terraapi">terra.api</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#terraapiauth">terra.api.auth</a></li>
+        
+            <li><a class="toctree-l3" href="#terraapioracle">terra.api.oracle</a></li>
+        
+            <li><a class="toctree-l3" href="#terraapitendermint">terra.api.tendermint</a></li>
+        
+        </ul>
+    
+
     <li class="toctree-l2"><a href="#terramsg">terra.msg</a></li>
     
         <ul>
@@ -145,14 +158,63 @@
 <p>Documentation of the modules apis.</p>
 <h1 id="terra">terra</h1>
 <p>Account:</p>
-<pre><code class="python">terra.Account(
+<pre><code class="python">Account(
     mnemonic: str
     account: int = 0,
     index: int = 0,
     chain_id: str = &quot;columbus-2&quot;,
 )
 
-terra.Account.generate() -&gt; Account
+Account().generate() -&gt; Account
+</code></pre>
+
+<h1 id="terraapi">terra.api</h1>
+<p>You can change the api endpoint by setting:</p>
+<pre><code class="python">terra.api.Client.URL = &quot;https://my.lcd.server&quot;
+</code></pre>
+
+<p>Client:</p>
+<pre><code class="python">Client()
+
+Client.get(
+    path: str,
+    params: Optional[Dict[str, str]] = None,
+    timeout: Optional[int] = 5,
+) -&gt; dict
+
+Client.post(
+    path: str,
+    json: Optional[Dict[str, str]],
+    params: Optional[Dict[str, str]] = None,
+    timeout: Optional[int] = 10,
+) -&gt; dict
+</code></pre>
+
+<p><strong>Note</strong>: You should probably not have to use this class.
+It is meant for internal use.</p>
+<h2 id="terraapiauth">terra.api.auth</h2>
+<p>accounts:</p>
+<pre><code class="python">accounts.get(
+    address: str
+) -&gt; dict
+</code></pre>
+
+<h2 id="terraapioracle">terra.api.oracle</h2>
+<p>denoms:</p>
+<pre><code class="python">denoms.get() -&gt; dict
+</code></pre>
+
+<h2 id="terraapitendermint">terra.api.tendermint</h2>
+<p>blocks:</p>
+<pre><code class="python">blocks.get() -&gt; dict
+</code></pre>
+
+<p>node_info:</p>
+<pre><code class="python">node_info.get() -&gt; dict
+</code></pre>
+
+<p>txs:</p>
+<pre><code class="python">txs.post(tx_dump: str) -&gt; dict
 </code></pre>
 
 <h1 id="terramsg">terra.msg</h1>
