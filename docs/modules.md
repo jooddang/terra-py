@@ -13,7 +13,7 @@ terra.Account(
     sequence: str = "0",
     account_number: str = "0",
     chain_id: str = "",
-) -> None
+)
 
 terra.Account.generate() -> Account
 ```
@@ -25,7 +25,7 @@ Coin:
 Coin(
     amount: str,
     denom: str,
-) -> None
+)
 
 Coin().to_json(
     sort: bool = False,
@@ -37,7 +37,7 @@ Fee:
 Fee(
     gas: str,
     amount: List[terra.msg.Coin],
-) -> None
+)
 
 Fee().to_json(
     sort: bool = False,
@@ -49,7 +49,7 @@ InOut:
 InOut(
     address: str,
     coins: List[terra.msg.Coin],
-) -> None
+)
 
 InOut().to_json(
     sort: bool = False,
@@ -73,7 +73,7 @@ Tx(
     mode: str = terra.msg.ReturnType.BLOCK,
     msg: List[terra.utils.JsonSerializable] = [],
     signatures: List[terra.msg.auth.StdSignMessage] = [],
-) -> None
+)
 
 Tx().sign_with(
     account: terra.Account,
@@ -92,7 +92,7 @@ StdSignMsg(
     signature: str,
     pub_key_value: str,
     pub_key_type: str = "tendermint/PubKeySecp256k1",
-) -> None
+)
 
 StdSignMsg().to_json(
     sort: bool = False,
@@ -106,7 +106,7 @@ StdTx(
     memo: str = "",
     msg: List[terra.utils.JsonSerializable] = [],  # all terra.msg classes inherit from JsonSerializable
     signatures: List[terra.msg.auth.StdSignMessage] = [],
-) -> None
+)
 
 StdTx().sign_with(
     account: terra.Account,
@@ -124,7 +124,7 @@ MsgSetWithdrawAddress:
 MsgSetWithdrawAddress(
     delegator_address: str,
     withdraw_address: str,
-) -> None
+)
 
 MsgSetWithdrawAddress().to_json(
     sort: bool = False,
@@ -136,7 +136,7 @@ MsgWithdrawDelegatorReward:
 MsgWithdrawDelegatorReward(
     delegator_address: str,
     validator_address: str,
-) -> None
+)
 
 MsgWithdrawDelegatorReward().to_json(
     sort: bool = False,
@@ -151,7 +151,7 @@ MsgSwap(
     trader: str,
     offer_coin: terra.msg.Coin,
     ask_denom: str,
-) -> None
+)
 
 MsgSwap().to_json(
     sort: bool = False,
@@ -168,7 +168,7 @@ MsgPricePrevote(
     denom: str,
     feeder: str,
     validator: str
-) -> None
+)
 
 MsgPricePrevote().to_json(
     sort: bool = False,
@@ -183,7 +183,7 @@ MsgPriceVote(
     denom: str,
     feeder: str,
     validator: str,
-) -> None
+)
 
 MsgPriceVote().to_json(
     sort: bool = False,
@@ -197,7 +197,7 @@ MsgMultiSend:
 MsgMultiSend(
     inputs: List[terra.msg.InOut],
     outputs: List[terra.msg.InOut],
-) -> None
+)
 
 MsgMultiSend().to_json(
     sort: bool = False,
@@ -210,7 +210,7 @@ MsgSend(
     amount: List[terra.msg.Coin],
     from_address: str,
     to_address: str
-) -> None
+)
 
 MsgSend().to_json(
     sort: bool = False,
@@ -226,7 +226,7 @@ MsgBeginRedelegate(
     validator_src_address: str,
     validator_dst_address: str,
     amount: terra.msg.Coin,
-) -> None
+)
 
 MsgBeginRedelegate().to_json(
     sort: bool = False,
@@ -239,7 +239,7 @@ MsgDelegate(
     delegator_address: str,
     validator_address: str,
     amount: terra.msg.Coin,
-) -> None
+)
 
 MsgDelegate().to_json(
     sort: bool = False,
@@ -252,7 +252,7 @@ MsgUndelegate(
     delegator_address: str,
     validator_address: str,
     amount: terra.msg.Coin,
-) -> None
+)
 
 MsgUndelegate().to_json(
     sort: bool = False,
@@ -263,7 +263,7 @@ MsgUndelegate().to_json(
 
 JsonSerializable:
 ```python
-JsonSerializable() -> None
+JsonSerializable()
 
 JsonSerializable().to_json(
     sort: bool = False,
