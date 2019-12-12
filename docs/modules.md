@@ -6,14 +6,75 @@ Documentation of the modules apis.
 
 Account:
 ```python
-terra.Account(
+Account(
     mnemonic: str
     account: int = 0,
     index: int = 0,
     chain_id: str = "columbus-2",
 )
 
-terra.Account.generate() -> Account
+Account().generate() -> Account
+```
+
+# terra.api
+
+You can change the api endpoint by setting:
+```python
+terra.api.Client.URL = "https://my.lcd.server"
+```
+
+Client:
+```python
+Client()
+
+Client.get(
+    path: str,
+    params: Optional[Dict[str, str]] = None,
+    timeout: Optional[int] = 5,
+) -> dict
+
+Client.post(
+    path: str,
+    json: Optional[Dict[str, str]],
+    params: Optional[Dict[str, str]] = None,
+    timeout: Optional[int] = 10,
+) -> dict
+```
+
+**Note**: You should probably not have to use this class.
+It is meant for internal use.
+
+## terra.api.auth
+
+accounts:
+```python
+accounts.get(
+    address: str
+) -> dict
+```
+
+## terra.api.oracle
+
+denoms:
+```python
+denoms.get() -> dict
+```
+
+## terra.api.tendermint
+
+blocks:
+```python
+blocks.get() -> dict
+```
+
+node_info:
+```python
+node_info.get() -> dict
+```
+
+txs:
+```python
+txs.post(tx_dump: str) -> dict
 ```
 
 # terra.msg
