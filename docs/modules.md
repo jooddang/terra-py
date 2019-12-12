@@ -7,12 +7,10 @@ Documentation of the modules apis.
 Account:
 ```python
 terra.Account(
-    mnemonic: str,
+    mnemonic: str
     account: int = 0,
     index: int = 0,
-    sequence: str = "0",
-    account_number: str = "0",
-    chain_id: str = "",
+    chain_id: str = "columbus-2",
 )
 
 terra.Account.generate() -> Account
