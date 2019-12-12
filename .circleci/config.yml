@@ -54,6 +54,26 @@ jobs:
           command: |
             poetry publish --username "${PYPI_USERNAME}" --password "${PYPI_PASSWORD}" --no-interaction
 
+
+  docs:
+    docker:
+        - image: circleci/python:3.6.8
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            poetry install
+      - add_ssh_keys:
+          fingerprints:
+            - "19:9e:15:1c:10:8b:6a:77:be:ca:ed:92:66:d5:c4:fa"
+      - run:
+          name: Publish to GH Pages
+          command: |
+            git config user.email "deploy@terra.money"
+            git config user.name "docs deployer"
+            poetry run mkdocs gh-deploy -c -m "Deploying docs {sha} [ci skip]"
+
 workflows:
   version: 2
 
@@ -63,6 +83,10 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - docs:
+          filters:
+            branches:
+              only: develop
       - publish:
           requires:
             - lint-and-test

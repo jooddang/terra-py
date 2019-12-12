@@ -10,14 +10,14 @@ class MsgPricePrevote(JsonSerializable):
         """Represent the top level of a MsgPricePrevote message."""
         self.type = "oracle/MsgPricePrevote"
         self.value = MsgPricePrevoteValue(
-            self._metadata_to_hash(price, salt, denom, feeder),
+            self._metadata_to_hash(price, salt, denom, validator),
             denom,
             feeder,
             validator,
         )
 
     def _metadata_to_hash(
-        self, price: str, salt: str, denom: str, voter: str
+        self, price: str, salt: str, denom: str, validator: str
     ) -> str:
         """Build the vote hash from metadata.
 
@@ -25,7 +25,7 @@ class MsgPricePrevote(JsonSerializable):
         `salt:price:denom:voter`
         https://docs.terra.money/specifications/oracle
         """
-        sha_hash = sha256(f"{salt}:{price}:{denom}:{voter}".encode())
+        sha_hash = sha256(f"{salt}:{price}:{denom}:{validator}".encode())
         return sha_hash.hexdigest()[:40]
 
 

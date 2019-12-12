@@ -40,10 +40,7 @@ def test_stdtx_sign():
     acc = Account(
         "bread genuine element reopen cliff power mean quiz mutual six "
         "machine planet dry detect edit slim clap firm jelly success na"
-        "rrow orange echo tomorrow",
-        sequence="0",
-        account_number="0",
-        chain_id="soju",
+        "rrow orange echo tomorrow"
     )
     send = msg.pay.MsgSend(
         amount=[msg.Coin(amount="1000000", denom="uluna")],
@@ -57,8 +54,8 @@ def test_stdtx_sign():
     )
     tx.sign_with(acc)
     assert tx.signatures[0].signature == (
-        "f2nHGTGqZr8CiMVcycdEL7DUJJm9Q60sQv7GxqOOOv1Sm6f4+XyiCmsu+"
-        "ViGKiVPVxhRf7jtxVLgkbIekYE26w=="
+        "ptjLPPDZi+8lHB5zTDV7sYb8hBfN3h5cLOoD+bGS4rdbKSFXdiPO9qPtr"
+        "RdfN0yuL8KWpLffAS8kiV44XL1ksA=="
     )
     assert tx.signatures[0].pub_key["type"] == "tendermint/PubKeySecp256k1"
     assert tx.signatures[0].pub_key["value"] == (

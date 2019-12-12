@@ -1,5 +1,7 @@
-from terra import msg, utils
+from terra import api
+from terra import msg
+from terra import utils
 from terra.account import Account
 
-__all__ = ["msg", "utils", "Account"]
-__version__ = "0.1.4"
+__all__ = ["api", "msg", "utils", "Account"]
+__version__ = "0.2.0"

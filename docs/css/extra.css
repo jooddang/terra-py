@@ -1,0 +1,11 @@
+footer {
+    visibility: hidden;
+}
+
+footer div {
+    visibility: visible;
+}
+
+footer hr {
+    visibility: visible;
+}
