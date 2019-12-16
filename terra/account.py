@@ -15,7 +15,7 @@ class Account:
         mnemonic: str,
         account: int = 0,
         index: int = 0,
-        chain_id: str = "columbus-2",
+        chain_id: str = "columbus-3",
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
@@ -56,7 +56,7 @@ class Account:
 
     @classmethod
     def generate(
-        cls, account: int = 0, index: int = 0, chain_id: str = "columbus-2"
+        cls, account: int = 0, index: int = 0, chain_id: str = "columbus-3"
     ) -> "Account":  # see PEP484 and 563 (type hint yet undefined names)
         """Generate a new account from a random mnemonic"""
         return cls(
