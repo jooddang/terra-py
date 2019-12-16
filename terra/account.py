@@ -52,7 +52,7 @@ class Account:
     @property
     def account_number(self) -> str:
         account = api.auth.accounts.by_address.get(self.account_address)
-        return account["value"]["account_number"]
+        return account["result"]["value"]["account_number"]
 
     @classmethod
     def generate(
@@ -68,7 +68,7 @@ class Account:
 
     def _get_sequence(self) -> str:
         """Get sequence from api."""
-        return api.auth.accounts.by_address.get(self.account_address)["value"][
+        return api.auth.accounts.by_address.get(self.account_address)["result"]["value"][
             "sequence"
         ]
 
