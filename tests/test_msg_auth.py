@@ -37,6 +37,39 @@ def test_stdtx_with_msg_msgsend():
 
 
 def test_stdtx_sign():
+    """Must match terra-js signature:
+    ```javascript
+        const terra = require('./dist/src/index.js')
+        const mnemonic = "bread genuine element reopen cliff power mean quiz mutual six machine planet dry detect edit slim clap firm jelly success narrow orange echo tomorrow"
+        const masterKey = terra.deriveMasterKeySync(mnemonic)
+        const keypair = terra.deriveKeypair(masterKey)
+        const accAddr = terra.getAccAddress(keypair.publicKey)
+
+        const msgSend = terra.buildSend([
+        {
+            "amount": "1000000",
+            "denom": "uluna"
+        }
+        ], "terra18ydtc7jzr07ejkper09rzeysh0qruvfewfk8ch", "terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv");
+        const stdTx = terra.buildStdTx([msgSend], {
+        "gas": "200000",
+        "amount": [
+            {
+            "amount": "1000",
+            "denom": "uluna"
+            }
+        ]
+        }, "library test")
+        const jsonTx = stdTx.value
+        const txSignature = terra.sign(jsonTx, keypair, {
+        sequence: "0",
+        account_number: "0",
+        chain_id: "columbus-3"
+        })
+        const signedTx = terra.createSignedTx(stdTx.value, txSignature)
+        console.log(signedTx)
+    ```
+    """
     acc = Account(
         "bread genuine element reopen cliff power mean quiz mutual six "
         "machine planet dry detect edit slim clap firm jelly success na"
@@ -54,8 +87,8 @@ def test_stdtx_sign():
     )
     tx.sign_with(acc)
     assert tx.signatures[0].signature == (
-        "ptjLPPDZi+8lHB5zTDV7sYb8hBfN3h5cLOoD+bGS4rdbKSFXdiPO9qPtr"
-        "RdfN0yuL8KWpLffAS8kiV44XL1ksA=="
+        "GUhFba7Q1J2rvC2r2EUqsBDCb8AWf8Iu1BFIWyvFjRB8eW8maioVPnxWW"
+        "03GXmYhNGCwfVND0xNj+Sr36O841w=="
     )
     assert tx.signatures[0].pub_key["type"] == "tendermint/PubKeySecp256k1"
     assert tx.signatures[0].pub_key["value"] == (
