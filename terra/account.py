@@ -19,24 +19,30 @@ class Account:
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
-        self.seed = Mnemonic("english").to_seed(self.mnemonic).hex()
-        root = self._derive_root(self.seed)
+        seed = Mnemonic("english").to_seed(self.mnemonic).hex()
+        root = self._derive_root(seed)
         child = self._derive_child(root, account, index)
         self.private_key = child.PrivateKey().hex()
         self.public_key = child.PublicKey().hex()
-        self.address = self._get_address(self.public_key)
+        address = self._get_address(self.public_key)
         self.account_address = self._get_bech(
-            self.ADDR_PREFIX["account"], self.address
+            self.ADDR_PREFIX["account"], address
         )
         self.operator_address = self._get_bech(
-            self.ADDR_PREFIX["operator"], self.address
+            self.ADDR_PREFIX["operator"], address
         )
         self.chain_id = chain_id
         self._sequence = self._get_sequence()
+        self._account_number = self._get_account_number()
 
     @property
     def sequence(self) -> str:
-        """Sequence getter."""
+        """Sequence getter.
+
+        Compare the sequence from the api and the one cached in memory.
+        If the api one is higher, set the cached one to the same value.
+        Return the cached value.
+        """
         api_sequence = self._get_sequence()
         if int(self._sequence) > int(api_sequence):
             return self._sequence
@@ -51,8 +57,17 @@ class Account:
 
     @property
     def account_number(self) -> str:
-        account = api.auth.accounts.by_address.get(self.account_address)
-        return account["result"]["value"]["account_number"]
+        """Account number getter.
+
+        As long as the cached value is equal to 0,
+        will replace it by the api result on each call.
+        """
+        if int(self._account_number) > 0:
+            return self._account_number
+        else:
+            api_account_number = self._get_account_number()
+            self._account_number = api_account_number
+            return api_account_number
 
     @classmethod
     def generate(
@@ -71,6 +86,12 @@ class Account:
         return api.auth.accounts.by_address.get(self.account_address)[
             "result"
         ]["value"]["sequence"]
+
+    def _get_account_number(self) -> str:
+        """Get account number from api."""
+        return api.auth.accounts.by_address.get(self.account_address)[
+            "result"
+        ]["value"]["account_number"]
 
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
