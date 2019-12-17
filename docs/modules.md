@@ -10,7 +10,7 @@ Account(
     mnemonic: str
     account: int = 0,
     index: int = 0,
-    chain_id: str = "columbus-2",
+    chain_id: str = "columbus-3",
 )
 
 Account().generate() -> Account
