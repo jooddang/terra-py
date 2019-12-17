@@ -19,17 +19,17 @@ class Account:
     ) -> None:
         """Class representing an account and its signing capabilities."""
         self.mnemonic = mnemonic
-        self.seed = Mnemonic("english").to_seed(self.mnemonic).hex()
-        root = self._derive_root(self.seed)
+        seed = Mnemonic("english").to_seed(self.mnemonic).hex()
+        root = self._derive_root(seed)
         child = self._derive_child(root, account, index)
         self.private_key = child.PrivateKey().hex()
         self.public_key = child.PublicKey().hex()
-        self.address = self._get_address(self.public_key)
+        address = self._get_address(self.public_key)
         self.account_address = self._get_bech(
-            self.ADDR_PREFIX["account"], self.address
+            self.ADDR_PREFIX["account"], address
         )
         self.operator_address = self._get_bech(
-            self.ADDR_PREFIX["operator"], self.address
+            self.ADDR_PREFIX["operator"], address
         )
         self.chain_id = chain_id
         self._sequence = self._get_sequence()
