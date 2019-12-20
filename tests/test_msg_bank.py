@@ -1,13 +1,13 @@
 import json
 
 from terra import msg
-from terra.msg.pay.msgmultisend import MsgMultiSendValue
-from terra.msg.pay.msgsend import MsgSendValue
+from terra.msg.bank.msgmultisend import MsgMultiSendValue
+from terra.msg.bank.msgsend import MsgSendValue
 
 ADDRESS_IN = "terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv"
 ADDRESS_OUT = "terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qk"
 MSG_SEND = {
-    "type": "pay/MsgSend",
+    "type": "bank/MsgSend",
     "value": {
         "amount": [{"denom": "uluna", "amount": "1000"}],
         "from_address": ADDRESS_IN,
@@ -15,7 +15,7 @@ MSG_SEND = {
     },
 }
 MSG_MULTI_SEND = {
-    "type": "pay/MsgMultiSend",
+    "type": "bank/MsgMultiSend",
     "value": {
         "inputs": [
             {
@@ -51,7 +51,7 @@ def test_msgsendvalue():
 
 def test_msgsend():
     coin = msg.Coin(amount="1000", denom="uluna")
-    msgsend = msg.pay.MsgSend(
+    msgsend = msg.bank.MsgSend(
         amount=[coin], from_address=ADDRESS_IN, to_address=ADDRESS_OUT
     )
     assert msgsend.to_json() == json.dumps(MSG_SEND, separators=(",", ":"))
@@ -76,7 +76,7 @@ def test_msgmultisendvalue():
 def test_msgmultisend():
     coin_uluna = msg.Coin(amount="1000", denom="uluna")
     coin_ukrw = msg.Coin(amount="40", denom="ukrw")
-    value = msg.pay.MsgMultiSend(
+    value = msg.bank.MsgMultiSend(
         inputs=[msg.InOut(address=ADDRESS_IN, coins=[coin_uluna, coin_ukrw])],
         outputs=[
             msg.InOut(
