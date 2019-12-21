@@ -95,7 +95,7 @@
         
             <li><a class="toctree-l3" href="#terramsgoracle">terra.msg.oracle</a></li>
         
-            <li><a class="toctree-l3" href="#terramsgpay">terra.msg.pay</a></li>
+            <li><a class="toctree-l3" href="#terramsgbank">terra.msg.bank</a></li>
         
             <li><a class="toctree-l3" href="#terramsgstaking">terra.msg.staking</a></li>
         
@@ -352,8 +352,8 @@ MsgSwap().to_json(
 </code></pre>
 
 <h2 id="terramsgoracle">terra.msg.oracle</h2>
-<p>MsgPricePrevote:</p>
-<pre><code class="python">MsgPricePrevote(
+<p>MsgExchangeRatePrevote:</p>
+<pre><code class="python">MsgExchangeRatePrevote(
     price: str,
     salt: str,
     denom: str,
@@ -361,13 +361,13 @@ MsgSwap().to_json(
     validator: str
 )
 
-MsgPricePrevote().to_json(
+MsgExchangeRatePrevote().to_json(
     sort: bool = False,
 ) -&gt; str
 </code></pre>
 
-<p>MsgPriceVote:</p>
-<pre><code class="python">MsgPriceVote(
+<p>MsgExchangeRateVote:</p>
+<pre><code class="python">MsgExchangeRateVote(
     price: str,
     salt: str,
     denom: str,
@@ -375,12 +375,12 @@ MsgPricePrevote().to_json(
     validator: str,
 )
 
-MsgPriceVote().to_json(
+MsgExchangeRateVote().to_json(
     sort: bool = False,
 ) -&gt; str
 </code></pre>
 
-<h2 id="terramsgpay">terra.msg.pay</h2>
+<h2 id="terramsgbank">terra.msg.bank</h2>
 <p>MsgMultiSend:</p>
 <pre><code class="python">MsgMultiSend(
     inputs: List[terra.msg.InOut],
