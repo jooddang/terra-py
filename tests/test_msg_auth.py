@@ -27,7 +27,7 @@ def test_stdtx():
 
 def test_stdtx_with_msg_msgsend():
     coin_msgsend = msg.Coin(amount="1000", denom="uluna")
-    msgsend = msg.pay.MsgSend(
+    msgsend = msg.bank.MsgSend(
         amount=[coin_msgsend], from_address="terra321", to_address="terra123"
     )
     coin_stdtx = msg.Coin(amount="1000", denom="uluna")
@@ -79,7 +79,7 @@ def test_stdtx_sign():
         "machine planet dry detect edit slim clap firm jelly success na"
         "rrow orange echo tomorrow"
     )
-    send = msg.pay.MsgSend(
+    send = msg.bank.MsgSend(
         amount=[msg.Coin(amount="1000000", denom="uluna")],
         from_address=acc.account_address,
         to_address="terra1ptdx6akgk7wwemlk5j73artt5t6j8am08ql3qv",
@@ -91,8 +91,8 @@ def test_stdtx_sign():
     )
     tx.sign_with(acc)
     assert tx.signatures[0].signature == (
-        "GUhFba7Q1J2rvC2r2EUqsBDCb8AWf8Iu1BFIWyvFjRB8eW8maioVPnxWW"
-        "03GXmYhNGCwfVND0xNj+Sr36O841w=="
+        "eIBlrEwWAUUqnBd8W0N4YaNYUS7kKC/EZEtzp9asxOpsb0eifCfZYKxn6"
+        "aiyZ4oJSJhaYV4p1ExyAi6GQLlLJg=="
     )
     assert tx.signatures[0].pub_key["type"] == "tendermint/PubKeySecp256k1"
     assert tx.signatures[0].pub_key["value"] == (
