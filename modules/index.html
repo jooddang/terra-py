@@ -76,6 +76,8 @@
         
             <li><a class="toctree-l3" href="#terraapiauth">terra.api.auth</a></li>
         
+            <li><a class="toctree-l3" href="#terraapibank">terra.api.bank</a></li>
+        
             <li><a class="toctree-l3" href="#terraapioracle">terra.api.oracle</a></li>
         
             <li><a class="toctree-l3" href="#terraapitendermint">terra.api.tendermint</a></li>
@@ -201,6 +203,13 @@ It is meant for internal use.</p>
 <h2 id="terraapiauth">terra.api.auth</h2>
 <p>accounts:</p>
 <pre><code class="python">accounts.get(
+    address: str
+) -&gt; dict
+</code></pre>
+
+<h2 id="terraapibank">terra.api.bank</h2>
+<p>balances:</p>
+<pre><code class="python">balances.get(
     address: str
 ) -&gt; dict
 </code></pre>
