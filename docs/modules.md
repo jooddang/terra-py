@@ -61,6 +61,15 @@ accounts.get(
 ) -> dict
 ```
 
+## terra.api.bank
+
+balances:
+```python
+balances.get(
+    address: str
+) -> dict
+```
+
 ## terra.api.oracle
 
 denoms:
