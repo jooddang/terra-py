@@ -44,7 +44,7 @@ def test_tx():
         "machine planet dry detect edit slim clap firm jelly success na"
         "rrow orange echo tomorrow"
     )
-    send = msg.pay.MsgSend(
+    send = msg.bank.MsgSend(
         amount=[msg.Coin(amount="1000000", denom="uluna")],
         from_address=acc.account_address,
         to_address=ADDRESS,

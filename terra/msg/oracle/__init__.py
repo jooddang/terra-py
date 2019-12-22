@@ -1,4 +1,4 @@
-from terra.msg.oracle.msgpriceprevote import MsgPricePrevote
-from terra.msg.oracle.msgpricevote import MsgPriceVote
+from terra.msg.oracle.msgexchangerateprevote import MsgExchangeRatePrevote
+from terra.msg.oracle.msgexchangeratevote import MsgExchangeRateVote
 
-__all__ = ["MsgPricePrevote", "MsgPriceVote"]
+__all__ = ["MsgExchangeRatePrevote", "MsgExchangeRateVote"]

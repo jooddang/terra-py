@@ -229,9 +229,9 @@ MsgSwap().to_json(
 
 ## terra.msg.oracle
 
-MsgPricePrevote:
+MsgExchangeRatePrevote:
 ```python
-MsgPricePrevote(
+MsgExchangeRatePrevote(
     price: str,
     salt: str,
     denom: str,
@@ -239,14 +239,14 @@ MsgPricePrevote(
     validator: str
 )
 
-MsgPricePrevote().to_json(
+MsgExchangeRatePrevote().to_json(
     sort: bool = False,
 ) -> str
 ```
 
-MsgPriceVote:
+MsgExchangeRateVote:
 ```python
-MsgPriceVote(
+MsgExchangeRateVote(
     price: str,
     salt: str,
     denom: str,
@@ -254,12 +254,12 @@ MsgPriceVote(
     validator: str,
 )
 
-MsgPriceVote().to_json(
+MsgExchangeRateVote().to_json(
     sort: bool = False,
 ) -> str
 ```
 
-## terra.msg.pay
+## terra.msg.bank
 
 MsgMultiSend:
 ```python

@@ -9,7 +9,7 @@ class MsgSend(JsonSerializable):
         self, amount: List[Coin], from_address: str, to_address: str
     ) -> None:
         """Represent the top level of a MsgSend message."""
-        self.type = "pay/MsgSend"
+        self.type = "bank/MsgSend"
         self.value = MsgSendValue(amount, from_address, to_address)
 
 
