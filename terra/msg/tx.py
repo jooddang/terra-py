@@ -1,7 +1,7 @@
 from typing import List
 
 from terra.account import Account
-from terra.api.tendermint import txs
+from terra.api.transactions import txs
 from terra.msg.fee import Fee
 from terra.msg.auth.stdsignmsg import StdSignMsg
 from terra.msg.auth.stdtx import StdTx
