@@ -8,26 +8,25 @@ from terra.exceptions import ApiError
 
 class Client:
     URL = "https://lcd.terra.dev"
-    SESSION = requests.Session()
 
     @staticmethod
     def get(
         path: str,
         params: Optional[Dict[str, str]] = None,
-        timeout: Optional[int] = 5,
+        timeout: Optional[int] = 10,
     ) -> dict:
         try:
-            resp = Client.SESSION.get(
+            resp = requests.get(
                 url=f"{Client.URL}{path}", params=params, timeout=timeout
             )
             if resp.status_code != 200:
                 raise ApiError(
-                    "The endpoint returned an unsuccessful status code: "
-                    f"{resp.text}"
+                    "The endpoint returned an unsuccessful status code "
+                    f"{resp.status_code}: {resp.text}"
                 )
             return resp.json()
         except requests.exceptions.Timeout:
-            raise ApiError("The endpoint timed out.")
+            raise ApiError(f"The endpoint timed out after {timeout}s.")
         except requests.exceptions.TooManyRedirects:
             raise ApiError(
                 "The endpoint exceeded the configured  number of maximum "
@@ -43,10 +42,10 @@ class Client:
         path: str,
         json: Optional[Dict[str, str]],
         params: Optional[Dict[str, str]] = None,
-        timeout: Optional[int] = 10,
+        timeout: Optional[int] = 60,
     ) -> dict:
         try:
-            resp = Client.SESSION.post(
+            resp = requests.post(
                 url=f"{Client.URL}{path}",
                 params=params,
                 timeout=timeout,
@@ -54,12 +53,12 @@ class Client:
             )
             if resp.status_code != 200:
                 raise ApiError(
-                    "The endpoint returned an unsuccessful status code: "
-                    f"{resp.text}"
+                    "The endpoint returned an unsuccessful status code "
+                    f"{resp.status_code}: {resp.text}"
                 )
             return resp.json()
         except requests.exceptions.Timeout:
-            raise ApiError("The endpoint timed out.")
+            raise ApiError(f"The endpoint timed out after {timeout}s.")
         except requests.exceptions.TooManyRedirects:
             raise ApiError(
                 "The endpoint exceeded the configured  number of maximum "
