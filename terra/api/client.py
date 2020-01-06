@@ -1,9 +1,12 @@
 from typing import Dict, Optional
 from json.decoder import JSONDecodeError
+import logging
 
 import requests
 
 from terra.exceptions import ApiError
+
+_log = logging.getLogger(__name__)
 
 
 class Client:
@@ -24,6 +27,7 @@ class Client:
                     "The endpoint returned an unsuccessful status code "
                     f"{resp.status_code}: {resp.text}"
                 )
+            _log.debug(f"Got {resp.status_code} from GET {path}")
             return resp.json()
         except requests.exceptions.Timeout:
             raise ApiError(f"The endpoint timed out after {timeout}s.")
@@ -56,6 +60,7 @@ class Client:
                     "The endpoint returned an unsuccessful status code "
                     f"{resp.status_code}: {resp.text}"
                 )
+            _log.debug(f"Got {resp.status_code} from POST {path}")
             return resp.json()
         except requests.exceptions.Timeout:
             raise ApiError(f"The endpoint timed out after {timeout}s.")
