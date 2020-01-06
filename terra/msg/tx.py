@@ -1,4 +1,5 @@
 from typing import List
+import logging
 
 from terra.account import Account
 from terra.api.transactions import txs
@@ -6,6 +7,8 @@ from terra.msg.fee import Fee
 from terra.msg.auth.stdsignmsg import StdSignMsg
 from terra.msg.auth.stdtx import StdTx
 from terra.utils.jsonserializable import JsonSerializable
+
+_log = logging.getLogger(__name__)
 
 
 class ReturnType:
@@ -45,8 +48,10 @@ class Tx(JsonSerializable):
 
         Proxy `StdTx().sign_with()`.
         """
+        _log.debug(f"Signing tx with account {account.account_address}")
         self.tx.sign_with(account)
 
     def broadcast(self) -> dict:
         """Helper function to broadcast the tx."""
+        _log.debug(f"Broadcasting tx {self.to_json()}")
         return txs.post(self.to_json())
