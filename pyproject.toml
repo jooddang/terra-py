@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "terra-core"
-version = "0.7.0"
+version = "0.8.0"
 description = "Python library for Terra Core"
 license = "MIT"
 authors = [
@@ -17,10 +17,8 @@ keywords = ["terra", "sdk"]
 
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
+    "Topic :: Utilities",
+    "Typing :: Typed",
 ]
 
 packages = [
@@ -47,8 +45,10 @@ githubrelease = "^1.5"
 toml = "^0.10.0"
 mkdocs = "^1.0"
 httmock = "^1.3"
+
 [tool.black]
 line-length = 79
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
