@@ -10,7 +10,12 @@ _log = logging.getLogger(__name__)
 
 
 class Client:
-    URL = "https://lcd.terra.dev"
+
+    def __init__(self, testnet=False):
+        if testnet:
+            self.URL = "https://vodka-lcd.terra.dev"
+        else:
+            self.URL = "https://lcd.terra.dev"
 
     @staticmethod
     def get(
