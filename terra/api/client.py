@@ -4,6 +4,7 @@ import logging
 
 import requests
 
+from terra.api import network
 from terra.exceptions import ApiError
 
 _log = logging.getLogger(__name__)
@@ -11,11 +12,8 @@ _log = logging.getLogger(__name__)
 
 class Client:
 
-    def __init__(self, testnet=False):
-        if testnet:
-            self.URL = "https://vodka-lcd.terra.dev"
-        else:
-            self.URL = "https://lcd.terra.dev"
+    def __init__(self, chain_url=network.MAINNET):
+        self.URL = chain_url
 
     @staticmethod
     def get(
