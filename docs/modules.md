@@ -33,15 +33,15 @@ terra.api.Client.URL = "https://my.lcd.server"
 
 Client:
 ```python
-Client()
+Client(api_network=ApiNetwork.MAINNET)
 
-Client.get(
+Client().get(
     path: str,
     params: Optional[Dict[str, str]] = None,
     timeout: Optional[int] = 5,
 ) -> dict
 
-Client.post(
+Client().post(
     path: str,
     json: Optional[Dict[str, str]],
     params: Optional[Dict[str, str]] = None,

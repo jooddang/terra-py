@@ -38,47 +38,47 @@ def response_generic_exception(url, request):
 
 def test_client_get_200():
     with HTTMock(response_200):
-        assert api.client.Client.get("/") == {"test": "test"}
+        assert api.client.Client().get("/") == {"test": "test"}
 
 
 def test_client_get_404():
     with HTTMock(response_404):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.get("/")
+            api.client.Client().get("/")
             assert e.match("404")
 
 
 def test_client_get_timeout():
     with HTTMock(response_timeout):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.get("/")
+            api.client.Client().get("/")
             assert e.match("timed out")
 
 
 def test_client_get_not_json():
     with HTTMock(response_not_json):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.get("/")
+            api.client.Client().get("/")
             assert e.match("json")
 
 
 def test_client_get_too_many_redirects():
     with HTTMock(response_too_many_redirects):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.get("/")
+            api.client.Client().get("/")
             assert e.match("redirections")
 
 
 def test_client_get_generic_exception():
     with HTTMock(response_generic_exception):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.get("/")
+            api.client.Client().get("/")
             assert e.match("The endpoint could not be accessed")
 
 
 def test_client_post_200():
     with HTTMock(response_200):
-        assert api.client.Client.post("/", {"some": "json"}) == {
+        assert api.client.Client().post("/", {"some": "json"}) == {
             "test": "test"
         }
 
@@ -86,59 +86,62 @@ def test_client_post_200():
 def test_client_post_404():
     with HTTMock(response_404):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.post("/", {"some": "json"})
+            api.client.Client().post("/", {"some": "json"})
             assert e.match("404")
 
 
 def test_client_post_timeout():
     with HTTMock(response_timeout):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.post("/", {"some": "json"})
+            api.client.Client().post("/", {"some": "json"})
             assert e.match("timed out")
 
 
 def test_client_post_not_json():
     with HTTMock(response_not_json):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.post("/", {"some": "json"})
+            api.client.Client().post("/", {"some": "json"})
             assert e.match("json")
 
 
 def test_client_post_too_many_redirects():
     with HTTMock(response_too_many_redirects):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.post("/", {"some": "json"})
+            api.client.Client().post("/", {"some": "json"})
             assert e.match("redirections")
 
 
 def test_client_post_generic_exception():
     with HTTMock(response_generic_exception):
         with pytest.raises(exceptions.ApiError) as e:
-            api.client.Client.post("/", {"some": "json"})
+            api.client.Client().post("/", {"some": "json"})
             assert e.match("The endpoint could not be accessed")
 
 
 def test_get_tendermint_node_info():
-    assert list(api.tendermint.node_info.get().keys())[0] == "node_info"
+    assert list(api.client.Client().get_node_info().keys())[0] == "node_info"
 
 
 def test_get_tendermint_blocks_latest():
-    assert list(api.tendermint.blocks.latest.get().keys())[0] == "block_meta"
+    assert list(
+        api.client.Client().get_latest_block().keys())[0] == "block_meta"
 
 
 def test_get_oracle_denoms_actives():
-    assert list(api.oracle.denoms.actives.get().keys())[0] == "height"
+    assert list(api.client.Client().get_active_denoms().keys())[0] == "height"
 
 
 def test_get_auth_accounts_by_address():
     address = "terra1d03dz5n3hj8qfzfjvrza8a9t0hejwnjcdsn5cw"
     assert (
-        list(api.auth.accounts.by_address.get(address).keys())[0] == "height"
+        list(api.client.Client().get_account_by_address(
+            address).keys())[0] == "height"
     )
 
 
 def test_get_bank_balances_by_address():
     address = "terra1d03dz5n3hj8qfzfjvrza8a9t0hejwnjcdsn5cw"
     assert (
-        list(api.bank.balances.by_address.get(address).keys())[0] == "height"
+        list(api.client.Client().get_balance_by_address(
+            address).keys())[0] == "height"
     )

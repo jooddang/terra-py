@@ -4,7 +4,7 @@ from mnemonic import Mnemonic
 import bech32
 import bip32utils
 
-from terra import api
+from terra.api.client import Client
 
 
 class Account:
@@ -83,13 +83,12 @@ class Account:
 
     def _get_sequence(self) -> str:
         """Get sequence from api."""
-        return api.auth.accounts.by_address.get(self.account_address)[
-            "result"
-        ]["value"]["sequence"]
+        return Client().get_account_by_address(
+            self.account_address)["result"]["value"]["sequence"]
 
     def _get_account_number(self) -> str:
         """Get account number from api."""
-        return api.auth.accounts.by_address.get(self.account_address)[
+        return Client().get_account_by_address(self.account_address)[
             "result"
         ]["value"]["account_number"]
 

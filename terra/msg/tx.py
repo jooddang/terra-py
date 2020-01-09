@@ -2,7 +2,7 @@ from typing import List
 import logging
 
 from terra.account import Account
-from terra.api.transactions import txs
+from terra.api.client import Client
 from terra.msg.fee import Fee
 from terra.msg.auth.stdsignmsg import StdSignMsg
 from terra.msg.auth.stdtx import StdTx
@@ -54,4 +54,4 @@ class Tx(JsonSerializable):
     def broadcast(self) -> dict:
         """Helper function to broadcast the tx."""
         _log.debug(f"Broadcasting tx {self.to_json()}")
-        return txs.post(self.to_json())
+        return Client().broadcast_tx(self.to_json())

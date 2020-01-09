@@ -1,7 +1,7 @@
-from terra.api import auth
-from terra.api import bank
-from terra.api import oracle
-from terra.api import tendermint
-from terra.api import transactions
+from enum import Enum
 
-__all__ = ["auth", "bank", "oracle", "tendermint", "transactions"]
+
+class ApiNetwork(Enum):
+    MAINNET = "https://lcd.terra.dev"
+    TESTNET__VODKA = "https://vodka-lcd.terra.dev"
+    TESTNET__SOJU = "https://soju-lcd.terra.dev"
