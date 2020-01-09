@@ -11,7 +11,6 @@ _log = logging.getLogger(__name__)
 
 
 class Client:
-
     def __init__(self, chain_url=network.MAINNET):
         self.URL = chain_url
 
