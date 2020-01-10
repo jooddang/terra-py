@@ -123,8 +123,9 @@ def test_get_tendermint_node_info():
 
 
 def test_get_tendermint_blocks_latest():
-    assert list(
-        api.client.Client().get_latest_block().keys())[0] == "block_meta"
+    assert (
+        list(api.client.Client().get_latest_block().keys())[0] == "block_meta"
+    )
 
 
 def test_get_oracle_denoms_actives():
@@ -134,14 +135,14 @@ def test_get_oracle_denoms_actives():
 def test_get_auth_accounts_by_address():
     address = "terra1d03dz5n3hj8qfzfjvrza8a9t0hejwnjcdsn5cw"
     assert (
-        list(api.client.Client().get_account_by_address(
-            address).keys())[0] == "height"
+        list(api.client.Client().get_account_by_address(address).keys())[0]
+        == "height"
     )
 
 
 def test_get_bank_balances_by_address():
     address = "terra1d03dz5n3hj8qfzfjvrza8a9t0hejwnjcdsn5cw"
     assert (
-        list(api.client.Client().get_balance_by_address(
-            address).keys())[0] == "height"
+        list(api.client.Client().get_balance_by_address(address).keys())[0]
+        == "height"
     )

@@ -83,14 +83,15 @@ class Account:
 
     def _get_sequence(self) -> str:
         """Get sequence from api."""
-        return Client().get_account_by_address(
-            self.account_address)["result"]["value"]["sequence"]
+        return Client().get_account_by_address(self.account_address)["result"][
+            "value"
+        ]["sequence"]
 
     def _get_account_number(self) -> str:
         """Get account number from api."""
-        return Client().get_account_by_address(self.account_address)[
-            "result"
-        ]["value"]["account_number"]
+        return Client().get_account_by_address(self.account_address)["result"][
+            "value"
+        ]["account_number"]
 
     def _derive_root(self, seed: str) -> bip32utils.BIP32Key:
         """Derive a root bip32 key object from seed."""
